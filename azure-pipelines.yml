@@ -46,11 +46,3 @@ steps:
   inputs:
     blog: jessehouwing.net
     theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: screenshots'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/screenshots'
-    ArtifactName: screenshots
-  condition: failed()
-
