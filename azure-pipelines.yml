@@ -1,0 +1,56 @@
+pool:
+  name: Default
+  vmImage: windows-latest
+  
+variables:
+  package.version: ''
+  AGENT.USE.NODE10: 'true'
+  chromium.bin: 'c:\program files (x86)\google\chrome\Application\chrome.exe'
+
+steps:
+- task: YodLabs.VariableTasks.SetVariableFromJSON.SetValueFromJSON@0
+  displayName: 'Set Variable package.version extracted with expression $.version'
+  inputs:
+    variableName: package.version
+    jsonPathExpression: '$.version'
+    jsonFile: package.json
+
+- task: jessehouwing.jessehouwing-vsts-variable-tasks.vsts-variable-set.VariableSetTask@1
+  displayName: 'Set variable: Build.BuildNumber to: ''$(package.version)'''
+  inputs:
+    VariableName: Build.BuildNumber
+    Value: '$(package.version)'
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@3
+  displayName: 'Use Yarn 1.x'
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@3
+  displayName: 'Yarn install'
+  inputs:
+    arguments: install
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@3
+  displayName: 'Yarn zip'
+  inputs:
+    arguments: zip
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: theme'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/dist'
+    ArtifactName: theme
+  condition: succeededOrFailed()
+
+- task: geeklearningio.gl-vsts-tasks-ghost.ghost-theme-uploader-task.Ghost@2
+  displayName: 'Ghost '
+  inputs:
+    blog: jessehouwing.net
+    theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: screenshots'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/screenshots'
+    ArtifactName: screenshots
+  condition: failed()
+
