@@ -1,48 +1,60 @@
 pool:
-  name: Default
-  vmImage: windows-latest
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
   
 variables:
   package.version: ''
   AGENT.USE.NODE10: 'true'
-  chromium.bin: 'c:\program files (x86)\google\chrome\Application\chrome.exe'
 
 steps:
-- task: YodLabs.VariableTasks.SetVariableFromJSON.SetValueFromJSON@0
-  displayName: 'Set Variable package.version extracted with expression $.version'
+- task: SetValueFromJSON@0
   inputs:
-    variableName: package.version
+    variableName: 'package.version'
     jsonPathExpression: '$.version'
-    jsonFile: package.json
+    jsonFile: 'package.json'
 
-- task: jessehouwing.jessehouwing-vsts-variable-tasks.vsts-variable-set.VariableSetTask@1
-  displayName: 'Set variable: Build.BuildNumber to: ''$(package.version)'''
+- task: VariableSetTask@1
   inputs:
-    VariableName: Build.BuildNumber
+    VariableName: 'Build.BuildNumber'
     Value: '$(package.version)'
+    IsSecret: false
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@3
-  displayName: 'Use Yarn 1.x'
-
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@3
-  displayName: 'Yarn install'
+- task: YarnInstaller@3
   inputs:
-    arguments: install
+    versionSpec: '1.x'
+    checkLatest: true
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@3
-  displayName: 'Yarn zip'
+- task: Yarn@3
   inputs:
-    arguments: zip
+    arguments: 'install'
+
+- task: Yarn@3
+  inputs:
+    arguments: 'zip'
+
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
+    destinationFolder: '$(Build.BinariesDirectory)/dist'
+    cleanDestinationFolder: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)/dist'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.BinariesDirectory)/casper-jessehouwingnl-v3.zip'
+    replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: theme'
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/dist'
+    PathtoPublish: '$(Build.BinariesDirectory)/casper-jessehouwingnl-v3.zip'
     ArtifactName: theme
   condition: succeededOrFailed()
 
-- task: geeklearningio.gl-vsts-tasks-ghost.ghost-theme-uploader-task.Ghost@2
-  displayName: 'Ghost '
+- task: Ghost@2
   inputs:
-    blog: jessehouwing.net
-    theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
+    version: '2x'
+    blog: 'jessehouwing.net'
+    theme: '$(Build.BinariesDirectory)/casper-jessehouwingnl-v3.zip'
