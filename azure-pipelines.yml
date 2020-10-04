@@ -32,20 +32,6 @@ steps:
   inputs:
     arguments: 'zip'
 
-- task: ExtractFiles@1
-  inputs:
-    archiveFilePatterns: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
-    destinationFolder: '$(Build.BinariesDirectory)/dist'
-    cleanDestinationFolder: true
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)/dist'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.BinariesDirectory)/casper-jessehouwingnl-v3.zip'
-    replaceExistingArchive: true
-
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: theme'
   inputs:
