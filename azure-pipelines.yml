@@ -27,10 +27,12 @@ steps:
 - task: Yarn@3
   inputs:
     arguments: 'install'
+    projectDirectory:  $(Build.SourcesDirectory)
 
 - task: Yarn@3
   inputs:
     arguments: 'zip'
+    projectDirectory:  $(Build.SourcesDirectory)
 
 - script: du -a .
   workingDirectory: $(Build.SourcesDirectory)
