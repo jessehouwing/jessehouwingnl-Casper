@@ -32,7 +32,7 @@ steps:
   inputs:
     arguments: 'zip'
 
-- script: tree .
+- script: du -a .
   workingDirectory: $(Build.SourcesDirectory)
 
 - task: PublishBuildArtifacts@1
