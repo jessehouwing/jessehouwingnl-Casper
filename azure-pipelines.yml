@@ -32,6 +32,9 @@ steps:
   inputs:
     arguments: 'zip'
 
+- script: tree .
+  workingDirectory: $(Build.SourcesDirectory)
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: theme'
   inputs:
