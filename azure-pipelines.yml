@@ -34,9 +34,6 @@ steps:
     arguments: 'zip'
     projectDirectory:  $(Build.SourcesDirectory)
 
-- script: du -a .
-  workingDirectory: $(Build.SourcesDirectory)
-
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: theme'
   inputs:
