@@ -289,6 +289,10 @@ production stylesheet in assets/built/screen.css
     fill: #fff;
 }
 
+.gh-social form {
+    display: inline;
+}
+
 .gh-social-facebook svg {
     height: 20px;
     width: 20px;

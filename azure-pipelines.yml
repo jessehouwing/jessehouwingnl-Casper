@@ -37,7 +37,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: theme'
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
+    PathtoPublish: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v4.zip'
     ArtifactName: theme
   condition: succeededOrFailed()
 
@@ -45,4 +45,4 @@ steps:
   inputs:
     version: '2x'
     blog: 'jessehouwing.net'
-    theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v3.zip'
+    theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v4.zip'
