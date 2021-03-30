@@ -1,8 +1,7 @@
-<form action="/search/" method="GET" style="margin-top: 3px" class="social-link social-link-fb">
-        <input style="color:#000; border: 0px;" name="q" type="search" alt="search" id="google-search-box" value="{{ @query.q }}" />
-        <button type="submit" style="filter: invert(1); padding: 0px; padding-left:5px; background: transparent; color: #fff;" class="social-link social-link-fb">
-{{> icons/search }}
-        </button>
+<form action="/search/" method="GET" style="margin-top: 3px" class="gh-social" id="google-search-form">
+    <label>
+        <input style="color:#000; opacity=0.2; border: 0px;" name="q" type="search" alt="search" id="google-search-box" value="{{ @query.q }}" />
+    </label>
 </form>
 <script type="text/javascript">
 function getParameterByName(name, url) {
