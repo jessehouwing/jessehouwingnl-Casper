@@ -560,6 +560,12 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
     word-break: break-word;
 }
 
+@media (max-width: 700px) {
+    .post-card {
+        min-height: auto;
+    }
+}
+
 .post-card-image-link {
     position: relative;
     display: block;
@@ -754,6 +760,30 @@ make sure this only happens on large viewports / desktop-ish devices.
 
  */
 
+@media (min-width: 701px) {
+    .post-feed.list .post-card-large {
+        grid-column: 1 / span 3;
+        display: grid;
+        grid-gap: 4vmin;
+        grid-template-columns: 3fr 5fr;
+        min-height: auto;
+        border-top: 0;
+    }
+
+    .post-feed.list .post-card-large.no-image {
+        grid-template-columns: 1fr;
+    }
+
+    .post-feed.list .post-card-large:not(.no-image) .post-card-header {
+        margin-top: 0;
+    }
+
+    .post-feed.list .post-card-large .post-card-content {
+        justify-content: flex-start;
+        margin-top: -6px;
+    }
+}
+
 @media (min-width: 1001px) {
     .post-card-large {
         grid-column: 1 / span 3;
@@ -762,15 +792,6 @@ make sure this only happens on large viewports / desktop-ish devices.
         grid-template-columns: 1fr 1fr 1fr;
         min-height: 280px;
         border-top: 0;
-    }
-
-    .post-feed.list .post-card-large {
-        grid-template-columns: 3fr 5fr;
-        min-height: auto;
-    }
-
-    .post-feed.list .post-card-large.no-image {
-        grid-template-columns: 1fr;
     }
 
     .post-card-large:not(.no-image) .post-card-header {
@@ -804,11 +825,6 @@ make sure this only happens on large viewports / desktop-ish devices.
 
     .post-card-large .post-card-content {
         justify-content: center;
-    }
-
-    .post-feed.list .post-card-large .post-card-content {
-        justify-content: flex-start;
-        margin-top: -6px;
     }
 
     .post-card-large .post-card-title {
@@ -999,14 +1015,10 @@ is the very first element in the post content */
 }
 
 /* Now the content typography styles */
-.gh-content a:not(.gh-post-upgrade-cta a):not(.kg-bookmark-container):not(.kg-btn):not(.kg-nft-card-container):not(.kg-callout-card-accent a) {
+.gh-content a {
     color: var(--ghost-accent-color);
     text-decoration: underline;
     word-break: break-word;
-}
-
-.gh-content .kg-callout-card-accent a {
-    text-decoration: underline;
 }
 
 .gh-content > blockquote:not([class]),
@@ -1020,23 +1032,30 @@ is the very first element in the post content */
     line-height: 1.6em;
 }
 
-.gh-content .kg-callout-text,
-.gh-content .kg-toggle-content > ol,
-.gh-content .kg-toggle-content > ul,
-.gh-content .kg-toggle-content > p {
+.gh-content .kg-callout-card .kg-callout-text,
+.gh-content .kg-toggle-card .kg-toggle-content > ol,
+.gh-content .kg-toggle-card .kg-toggle-content > ul,
+.gh-content .kg-toggle-card .kg-toggle-content > p {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: 2.0rem;
+    font-size: 1.9rem;
     line-height: 1.6em;
 }
 
-.gh-content .kg-callout-emoji {
-    font-size: 2.2rem;
-    line-height: 1.5em;
+.gh-content .kg-product-card .kg-product-card-description > p,
+.gh-content .kg-product-card .kg-product-card-description > ol,
+.gh-content .kg-product-card .kg-product-card-description > ul {
+    font-size: 1.7rem;
+    line-height: 1.6em;
 }
 
-.gh-content .kg-toggle-heading-text {
-    font-size: 2.2rem;
+.gh-content .kg-callout-card .kg-callout-emoji {
+    font-size: 2.1rem;
+    line-height: 1.4em;
+}
+
+.gh-content .kg-toggle-card .kg-toggle-heading-text {
+    font-size: 2.0rem;
 }
 
 .has-sans-body .gh-content > blockquote,
@@ -1044,16 +1063,20 @@ is the very first element in the post content */
 .has-sans-body .gh-content > ul,
 .has-sans-body .gh-content > dl,
 .has-sans-body .gh-content > p,
-.has-sans-body .kg-callout-text,
-.has-sans-body .kg-toggle-content > ol,
-.has-sans-body .kg-toggle-content > ul,
-.has-sans-body .kg-toggle-content > p {
+.has-sans-body .gh-content .kg-callout-card .kg-callout-text,
+.has-sans-body .gh-content .kg-toggle-card .kg-toggle-content > ol,
+.has-sans-body .gh-content .kg-toggle-card .kg-toggle-content > ul,
+.has-sans-body .gh-content .kg-toggle-card .kg-toggle-content > p {
     font-family: var(--font-sans);
 }
 
 .gh-content > ul,
 .gh-content > ol,
-.gh-content > dl {
+.gh-content > dl,
+.gh-content .kg-toggle-card .kg-toggle-content > ol,
+.gh-content .kg-toggle-card .kg-toggle-content > ul,
+.gh-content .kg-product-card .kg-product-card-description > ol,
+.gh-content .kg-product-card .kg-product-card-description > ul {
     padding-left: 1.9em;
 }
 
@@ -1102,14 +1125,20 @@ is the very first element in the post content */
     .gh-content > ul,
     .gh-content > dl,
     .gh-content > p,
-    .kg-callout-text,
-    .kg-toggle-content > ol,
-    .kg-toggle-content > ul,
-    .kg-toggle-content > p {
+    .gh-content .kg-callout-card .kg-callout-text,
+    .gh-content .kg-toggle-card .kg-toggle-content > ol,
+    .gh-content .kg-toggle-card .kg-toggle-content > ul,
+    .gh-content .kg-toggle-card .kg-toggle-content > p {
         font-size: 1.7rem;
     }
 
-    .gh-content blockquote::before {
+    .gh-content .kg-product-card .kg-product-card-description > p,
+    .gh-content .kg-product-card .kg-product-card-description > ol,
+    .gh-content .kg-product-card .kg-product-card-description > ul {
+        font-size: 1.5rem;
+    }
+
+    .gh-content blockquote:not([class])::before {
         left: -4vmin;
     }
 }
@@ -1147,12 +1176,12 @@ except for when immediately preceeded by a heading */
     margin: auto;
 }
 
-.has-serif-title .kg-toggle-heading-text {
+.has-serif-title .kg-toggle-card .kg-toggle-heading-text {
     font-family: var(--font-serif);
 }
 
-.kg-toggle-content > * + * {
-    margin-top: min(2.4rem, 4vmin);
+.gh-content .kg-callout-card-accent a {
+    text-decoration: underline;
 }
 
 .kg-blockquote-alt {
@@ -1162,6 +1191,18 @@ except for when immediately preceeded by a heading */
 
 .has-sans-body .kg-blockquote-alt {
     font-family: var(--font-sans);
+}
+
+.kg-card.kg-header-card.kg-style-dark {
+    background: var(--color-darkgrey);
+}
+
+.kg-header-card.kg-style-light h2.kg-header-card-header {
+    color: color-mod(var(--color-darkgrey) l(-5%));
+}
+
+.has-serif-title .kg-header-card h2.kg-header-card-header {
+    font-family: var(--font-serif);
 }
 
 
@@ -1823,7 +1864,7 @@ html.dark-mode .gh-content :not(pre) > code {
     color: var(--color-wash);
 }
 
-html.dark-mode .gh-content a:not(.kg-btn):not(.kg-nft-card-container) {
+html.dark-mode .gh-content a:not(.kg-btn):not(.kg-nft-card-container):not(.kg-product-card-button):not(.kg-header-card-button) {
     color: #fff;
 }
 
@@ -1878,6 +1919,19 @@ html.dark-mode .gh-content input {
 html.dark-mode .site-archive-header .no-image {
     color: rgba(255, 255, 255, 0.9);
     background: var(--color-darkmode);
+}
+
+html.dark-mode .kg-header-card.kg-style-dark {
+    background: color-mod(var(--color-darkgrey) l(-5%));
+}
+
+html.dark-mode .kg-header-card.kg-style-light {
+    background: color-mod(var(--color-darkgrey) l(+5%));
+}
+
+html.dark-mode .kg-header-card h2.kg-header-card-header,
+html.dark-mode .kg-header-card h3.kg-header-card-subheader {
+    color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1961,7 +2015,7 @@ html.dark-mode .site-archive-header .no-image {
         color: var(--color-wash);
     }
 
-    html.auto-color .gh-content a:not(.kg-btn):not(.kg-nft-card-container) {
+    html.auto-color .gh-content a:not(.kg-btn):not(.kg-nft-card-container):not(.kg-product-card-button):not(.kg-header-card-button) {
         color: #fff;
     }
 
@@ -2016,6 +2070,19 @@ html.dark-mode .site-archive-header .no-image {
     html.auto-color .site-archive-header .no-image {
         color: rgba(255, 255, 255, 0.9);
         background: var(--color-darkmode);
+    }
+
+    html.auto-color .kg-header-card.kg-style-dark {
+        background: color-mod(var(--color-darkgrey) l(-5%));
+    }
+
+    html.auto-color .kg-header-card.kg-style-light {
+        background: color-mod(var(--color-darkgrey) l(+5%));
+    }
+
+    html.auto-color .kg-header-card h2.kg-header-card-header,
+    html.auto-color .kg-header-card h3.kg-header-card-subheader {
+        color: #fff;
     }
 }
 
