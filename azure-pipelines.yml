@@ -46,3 +46,4 @@ steps:
     version: '2x'
     blog: 'jessehouwing.net'
     theme: '$(Build.SourcesDirectory)/dist/casper-jessehouwingnl-v4.zip'
+  condition: false
