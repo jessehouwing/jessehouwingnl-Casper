@@ -1605,7 +1605,7 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .author-profile-social-link:hover {
-    color: var(--color-darkgrey);
+    opacity: 0.9;
 }
 
 .author-profile-social-link svg {
