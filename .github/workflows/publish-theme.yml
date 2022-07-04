@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
-      - bash: |
+      - run: |
           yarn install
           yarn zip
       - uses: TryGhost/action-deploy-theme@v1.4.1
