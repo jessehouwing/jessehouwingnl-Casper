@@ -42,19 +42,21 @@
                 {{navigation}}
             </div>
             <div class="gh-head-actions">
-                <div class="gh-social">
+                <div class="gh-social" style="flex-direction: row-reverse;">
+                    <div class="gh-social">
+                        {{#if @site.facebook}}
+                        <a class="gh-social-link gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                        {{#if @site.twitter}}
+                        <a class="gh-social-link gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                        <a class="gh-social-link gh-social-linkedin" href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener me">{{> "icons/linkedin"}}</a>
+                        <a class="gh-social-link gh-social-github" href="https://github.com/jessehouwing/" title="Github" target="_blank" rel="noopener me">{{> "icons/github"}}</a>
+                        <a class="gh-social-link gh-social-stackoverflow" href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener me">{{> "icons/stackoverflow"}}</a>
+                        <a class="gh-social-link gh-social-mvp" href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" target="_blank" rel="noopener me">{{> "icons/mvp"}}</a>
+                        <a class="gh-social-link rss-button" href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener me">{{> "icons/rss"}}</a>
+                    </div>
                     {{> "google-search"}}
-                    {{#if @site.facebook}}
-                    <a class="gh-social-link gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
-                    {{/if}}
-                    {{#if @site.twitter}}
-                    <a class="gh-social-link gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
-                    {{/if}}
-                    <a class="gh-social-link gh-social-linkedin" href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener me">{{> "icons/linkedin"}}</a>
-                    <a class="gh-social-link gh-social-github" href="https://github.com/jessehouwing/" title="Github" target="_blank" rel="noopener me">{{> "icons/github"}}</a>
-                    <a class="gh-social-link gh-social-stackoverflow" href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener me">{{> "icons/stackoverflow"}}</a>
-                    <a class="gh-social-link gh-social-mvp" href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" target="_blank" rel="noopener me">{{> "icons/mvp"}}</a>
-                    <a class="gh-social-link rss-button" href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener me">{{> "icons/rss"}}</a>
                 </div>
             </div>
         </nav>
