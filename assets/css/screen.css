@@ -5,7 +5,7 @@ This is a development CSS file which is built to a minified
 production stylesheet in assets/built/screen.css
 
 1.  Global Styles
-2.  Layout
+2.  Layout.
 3.  Special Templates
 4.  Site Header
 5.  Site Navigation
@@ -570,7 +570,7 @@ production stylesheet in assets/built/screen.css
     justify-content: center;
     align-items: center;
     padding: 8px 20px;
-    height: 30px;.gh-head-button
+    height: 30px;
     font-weight: 600;
     letter-spacing: -0.005em;
     font-size: 1.6rem;
@@ -579,7 +579,10 @@ production stylesheet in assets/built/screen.css
     background: var(--ghost-accent-color);
 }
 
-.has-cover .gh-head-button {
+.has-cover 
+
+
+{
     color: var(--color-darkgrey);
     background: #fff;
 }
