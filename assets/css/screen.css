@@ -570,11 +570,11 @@ production stylesheet in assets/built/screen.css
     justify-content: center;
     align-items: center;
     padding: 8px 20px;
-    height: 44px;
+    height: 30px;.gh-head-button
     font-weight: 600;
     letter-spacing: -0.005em;
     font-size: 1.6rem;
-    border-radius: 48px;
+    border-radius: 30px;
     color: #fff;
     background: var(--ghost-accent-color);
 }
