@@ -580,8 +580,6 @@ production stylesheet in assets/built/screen.css
 }
 
 .has-cover 
-
-
 {
     color: var(--color-darkgrey);
     background: #fff;
