@@ -1647,7 +1647,7 @@ __metadata:
     "@tryghost/release-utils": 0.8.1
     autoprefixer: 10.4.7
     beeper: 2.1.0
-    cssnano: 5.1.12
+    cssnano: 5.1.14
     gscan: 4.34.0
     gulp: 4.0.2
     gulp-concat: 2.6.1
@@ -2191,7 +2191,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano-preset-default@npm:^5.2.12":
+"cssnano-preset-default@npm:^5.2.13":
   version: 5.2.13
   resolution: "cssnano-preset-default@npm:5.2.13"
   dependencies:
@@ -2239,16 +2239,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano@npm:5.1.12":
-  version: 5.1.12
-  resolution: "cssnano@npm:5.1.12"
+"cssnano@npm:5.1.14":
+  version: 5.1.14
+  resolution: "cssnano@npm:5.1.14"
   dependencies:
-    cssnano-preset-default: ^5.2.12
+    cssnano-preset-default: ^5.2.13
     lilconfig: ^2.0.3
     yaml: ^1.10.2
   peerDependencies:
     postcss: ^8.2.15
-  checksum: 5bc6a6195e7fe2065fbe6002dd09ce23f125956679232c823d9f28914e4ea7b72714b67c86e3b5369861253eb74c4df3079a9b839b8ddebe60e1f81d2292e224
+  checksum: 73463c723c5e598b37b8b4d2f014145bd72133e6581349a1b154904e0830e58de17afb1e801ed3ea3b18e386883964ce4d0299e43d4dc37d339214a956c6697f
   languageName: node
   linkType: hard
 
