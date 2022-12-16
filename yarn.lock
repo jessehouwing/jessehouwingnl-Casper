@@ -1302,12 +1302,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"beeper@npm:3.0.0":
-  version: 3.0.0
-  resolution: "beeper@npm:3.0.0"
+"beeper@npm:2.1.0":
+  version: 2.1.0
+  resolution: "beeper@npm:2.1.0"
   dependencies:
-    yoctodelay: ^1.2.0
-  checksum: 7601c6545074b7baff7434103482d589e7c860b7480005a91bb8a2c07d0eaab6bc1e2b112125788919e8902f5e9a5e7eac273ecb60e56e538ee3a9abefa37419
+    yoctodelay: ^1.1.0
+  checksum: 170530b32d851030f1a49e03ab6affc9d3cc43c2fad8eec953ead104a6aca262f8cd26bb454a3fa116b6a33ec405aac8cf09774135fcf8c27e5c2c5f6111889b
   languageName: node
   linkType: hard
 
@@ -1646,7 +1646,7 @@ __metadata:
   dependencies:
     "@tryghost/release-utils": 0.8.1
     autoprefixer: 10.4.13
-    beeper: 3.0.0
+    beeper: 2.1.0
     cssnano: 5.1.14
     gscan: 4.34.0
     gulp: 4.0.2
@@ -8151,7 +8151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yoctodelay@npm:^1.2.0":
+"yoctodelay@npm:^1.1.0":
   version: 1.2.0
   resolution: "yoctodelay@npm:1.2.0"
   checksum: 5c66a350a0fb17f68ac8659aca47e837aac5bf288185ce2942605c88bd9fc9c5f410de377445d5a475a39c25a1e568961c6e6906f37c751a33937d27f3f329ef
