@@ -1431,7 +1431,7 @@ is the very first element in the post content */
 }
 
 .page-template .gh-content:only-child > *:first-child:not(.kg-width-full) {
-    padding-top: max(12vmin, 64px);
+    margin-top: max(12vmin, 64px);
 }
 
 .page-template .gh-content > *:last-child:not(.kg-width-full) {
@@ -1570,11 +1570,9 @@ make sure they look good, and are given a bit of extra spacing. */
 except for when immediately preceeded by a heading */
 .gh-content :not(.kg-card):not([id]) + .kg-card {
     margin-top: 6vmin;
-    margin-bottom: 0;
 }
 .gh-content .kg-card + :not(.kg-card) {
     margin-top: 6vmin;
-    margin-bottom: 0;
 }
 
 /* This keeps small embeds centered */
