@@ -170,10 +170,5 @@
                 "group": "post"
             }
         }
-    },
-    "renovate": {
-        "extends": [
-            "@tryghost:theme"
-        ]
     }
 }
