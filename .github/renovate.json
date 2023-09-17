@@ -3,5 +3,6 @@
   "extends": [
     "local>jessehouwing/.github:renovate-config"
   ],
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
+  "baseBranches": ["customized"]
 }
