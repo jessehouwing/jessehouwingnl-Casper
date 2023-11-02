@@ -1,0 +1,28 @@
+{
+    "subject": "acct:jessehouwing@hachyderm.io",
+    "aliases": [
+        "https://hachyderm.io/@jessehouwing",
+        "https://hachyderm.io/users/jessehouwing"
+    ],
+    "links": [
+        {
+            "rel": "http://webfinger.net/rel/profile-page",
+            "type": "text/html",
+            "href": "https://hachyderm.io/@jessehouwing"
+        },
+        {
+            "rel": "self",
+            "type": "application/activity+json",
+            "href": "https://hachyderm.io/users/jessehouwing"
+        },
+        {
+            "rel": "http://ostatus.org/schema/1.0/subscribe",
+            "template": "https://hachyderm.io/authorize_interaction?uri={uri}"
+        },
+        {
+            "rel": "http://webfinger.net/rel/avatar",
+            "type": "image/png",
+            "href": "https://media.hachyderm.io/accounts/avatars/109/383/708/737/874/047/original/9ccec929256a6fd7.png"
+        }
+    ]
+}
