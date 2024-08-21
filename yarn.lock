@@ -2094,7 +2094,7 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-cssnano-preset-default@^5.2.12:
+cssnano-preset-default@^5.2.14:
   version "5.2.14"
   resolved "https://registry.yarnpkg.com/cssnano-preset-default/-/cssnano-preset-default-5.2.14.tgz#309def4f7b7e16d71ab2438052093330d9ab45d8"
   integrity sha512-t0SFesj/ZV2OTylqQVOrFgEh5uanxbO6ZAdeCrNsUQ6fVuXwYTxJPNAGvGTxHbD68ldIJNec7PyYZDBrfDQ+6A==
@@ -2134,12 +2134,12 @@ cssnano-utils@^3.1.0:
   resolved "https://registry.yarnpkg.com/cssnano-utils/-/cssnano-utils-3.1.0.tgz#95684d08c91511edfc70d2636338ca37ef3a6861"
   integrity sha512-JQNR19/YZhz4psLX/rQ9M83e3z2Wf/HdJbryzte4a3NSuafyp9w/I4U+hx5C2S9g41qlstH7DEWnZaaj83OuEA==
 
-cssnano@5.1.12:
-  version "5.1.12"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-5.1.12.tgz#bcd0b64d6be8692de79332c501daa7ece969816c"
-  integrity sha512-TgvArbEZu0lk/dvg2ja+B7kYoD7BBCmn3+k58xD0qjrGHsFzXY/wKTo9M5egcUCabPol05e/PVoIu79s2JN4WQ==
+cssnano@5.1.15:
+  version "5.1.15"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-5.1.15.tgz#ded66b5480d5127fcb44dac12ea5a983755136bf"
+  integrity sha512-j+BKgDcLDQA+eDifLx0EO4XSA56b7uut3BQFH+wbSaSTuGLuiyTa/wbRYthUXX8LC9mLg+WWKe8h+qJuwTAbHw==
   dependencies:
-    cssnano-preset-default "^5.2.12"
+    cssnano-preset-default "^5.2.14"
     lilconfig "^2.0.3"
     yaml "^1.10.2"
 
@@ -4544,11 +4544,6 @@ picocolors@^0.2.1:
   integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
 
 picocolors@^1.0.0, picocolors@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
-  integrity sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==
-
-picocolors@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
   integrity sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==
