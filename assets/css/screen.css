@@ -256,6 +256,10 @@ production stylesheet in assets/built/screen.css
     .site-title + .site-description {
         margin-top: 12px !important;
     }
+    .gh-social {
+      flex-wrap: wrap;
+    }
+  
 }
 
 
