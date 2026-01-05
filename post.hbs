@@ -8,105 +8,92 @@ into the {body} tag of the default.hbs template --}}
 {{!-- Everything inside the #post block pulls data from the post --}}
 
 <main id="site-main" class="site-main">
-<article class="article {{post_class}} {{#match @custom.post_image_style "Full"}}image-full{{else match @custom.post_image_style "=" "Small"}}image-small{{/match}}">
+    <article class="article {{post_class}} {{#match @custom.post_image_style "Full"}}image-full{{else match @custom.post_image_style "=" "Small"}}image-small{{/match}}">
 
-    <header class="article-header gh-canvas">
+        <header class="article-header gh-canvas">
 
-        <div class="article-tag post-card-tags">
-            {{#primary_tag}}
+            <div class="article-tag post-card-tags">
+                {{#primary_tag}}
                 <span class="post-card-primary-tag">
                     <a href="{{url}}">{{name}}</a>
                 </span>
-            {{/primary_tag}}
-            {{#if featured}}
+                {{/primary_tag}}
+                {{#if featured}}
                 <span class="post-card-featured">{{> "icons/fire"}} Featured</span>
-            {{/if}}
-        </div>
-
-        <h1 class="article-title">{{title}}</h1>
-
-        {{#if custom_excerpt}}
-            <p class="article-excerpt">{{custom_excerpt}}</p>
-        {{/if}}
-
-        <div class="article-byline">
-        <section class="article-byline-content">
-
-            <ul class="author-list instapaper_ignore">
-                {{#foreach authors}}
-                <li class="author-list-item">
-                    {{#if profile_image}}
-                    <a href="{{url}}" class="author-avatar" aria-label="Read more of {{name}}">
-                        <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
-                    </a>
-                    {{else}}
-                    <a href="{{url}}" class="author-avatar author-profile-image" aria-label="Read more of {{name}}">{{> "icons/avatar"}}</a>
-                    {{/if}}
-                </li>
-                {{/foreach}}
-            </ul>
-
-            <div class="article-byline-meta">
-                <h4 class="author-name">{{authors}}</h4>
-                <div class="byline-meta-content">
-                    <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
-                    {{#if reading_time}}
-                        <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
-                    {{/if}}
-                </div>
+                {{/if}}
             </div>
 
-        </section>
-        </div>
+            <h1 class="article-title">{{title}}</h1>
 
-        {{#match @custom.post_image_style "!=" "Hidden"}}
-        {{#if feature_image}}
+            {{#if custom_excerpt}}
+            <p class="article-excerpt">{{custom_excerpt}}</p>
+            {{/if}}
+
+            <div class="article-byline">
+                <section class="article-byline-content">
+
+                    <ul class="author-list instapaper_ignore">
+                        {{#foreach authors}}
+                        <li class="author-list-item">
+                            {{#if profile_image}}
+                            <a href="{{url}}" class="author-avatar" aria-label="Read more of {{name}}">
+                                <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                            </a>
+                            {{else}}
+                            <a href="{{url}}" class="author-avatar author-profile-image" aria-label="Read more of {{name}}">{{> "icons/avatar"}}</a>
+                            {{/if}}
+                        </li>
+                        {{/foreach}}
+                    </ul>
+
+                    <div class="article-byline-meta">
+                        <h4 class="author-name">{{authors}}</h4>
+                        <div class="byline-meta-content">
+                            <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                            {{#if reading_time}}
+                            <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+            {{#match @custom.post_image_style "!=" "Hidden"}}
+            {{#if feature_image}}
             <figure class="article-image">
-                {{!-- This is a responsive image, it loads different sizes depending on device
-                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
+                {{
+!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --
+                }}
+                <img srcset="{{img_url feature_image size="s"}} 300w,
                             {{img_url feature_image size="m"}} 600w,
                             {{img_url feature_image size="l"}} 1000w,
                             {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(min-width: 1400px) 1400px, 92vw"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                />
+                     sizes="(min-width: 1400px) 1400px, 92vw"
+                     src="{{img_url feature_image size="xl"}}"
+                     alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
                 {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
+                <figcaption>{{feature_image_caption}}</figcaption>
                 {{/if}}
             </figure>
+            {{/if}}
+            {{/match}}
+
+        </header>
+
+        <section class="gh-content gh-canvas">
+            {{content}}
+        </section>
+
+        {{#if comments}}
+        <section class="article-comments gh-canvas">
+            {{comments}}
+        </section>
         {{/if}}
-        {{/match}}
-
-    </header>
-
-    <section class="gh-content gh-canvas">
-        {{content}}
-    </section>
-
-    <section class="article-comments gh-canvas">
-                        <a name="comments"></a>
-                <div id="disqus_thread"></div>
-                    <script>
-                        var disqus_config = function () {
-                            this.page.url = '{{url absolute=true}}'; 
-                            this.page.identifier = '{{comment_id}}'; 
-                        };
-                        (function() {
-                            var d = document, s = d.createElement('script');
-                            s.src = 'https://jessehouwingnl.disqus.com/embed.js';
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                        })();
-                        </script>
-                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                   
-    </section>
 
 
-</article>
+    </article>
 </main>
 
 {{!-- Read more links, just above the footer --}}
