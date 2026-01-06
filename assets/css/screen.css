@@ -571,6 +571,32 @@ production stylesheet in assets/built/screen.css
     height: 18px;
 }
 
+/* Responsive social icons - tablet */
+@media (max-width: 991px) {
+    .gh-head-actions > .gh-social {
+        max-width: 200px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+    .gh-head-actions > .gh-social > .gh-social {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+}
+
+/* Responsive social icons - phone */
+@media (max-width: 767px) {
+    .gh-head-actions > .gh-social {
+        max-width: 180px;
+        justify-content: center;
+    }
+    .gh-head-actions > .gh-social > .gh-social {
+        justify-content: center;
+    }
+}
+
 .gh-head-actions {
     display: flex;
     justify-content: flex-end;
