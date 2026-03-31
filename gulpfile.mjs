@@ -1,23 +1,29 @@
-const {series, watch, src, dest, parallel} = require('gulp');
-const pump = require('pump');
-const path = require('path');
-const releaseUtils = require('@tryghost/release-utils');
-const inquirer = require('inquirer');
+import gulp from 'gulp';
+import pump from 'pump';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import releaseUtils from '@tryghost/release-utils';
+import { input } from '@inquirer/prompts';
 
 // gulp plugins and utils
-const livereload = require('gulp-livereload');
-const postcss = require('gulp-postcss');
-const zip = require('gulp-zip');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const beeper = require('beeper');
-const fs = require('fs');
+import livereload from 'gulp-livereload';
+import postcss from 'gulp-postcss';
+import zip from 'gulp-zip';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import beeper from 'beeper';
+import fs from 'fs';
 
 // postcss plugins
-const autoprefixer = require('autoprefixer');
-const colorFunction = require('postcss-color-mod-function');
-const cssnano = require('cssnano');
-const easyimport = require('postcss-easy-import');
+import autoprefixer from 'autoprefixer';
+import colorFunction from 'postcss-color-mod-function';
+import cssnano from 'cssnano';
+import easyimport from 'postcss-easy-import';
+
+const { series, watch, src, dest, parallel } = gulp;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const REPO = 'TryGhost/Casper';
 const REPO_READONLY = 'TryGhost/Casper';
@@ -73,7 +79,8 @@ function js(done) {
 }
 
 function zipper(done) {
-    const filename = require('./package.json').name + '.zip';
+    const packageJSON = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    const filename = packageJSON.name + '.zip';
 
     pump([
         src([
@@ -82,7 +89,8 @@ function zipper(done) {
             '!dist', '!dist/**',
             '!yarn-error.log',
             '!yarn.lock',
-            '!gulpfile.js'
+            '!gulpfile.js',
+            '!gulpfile.mjs'
         ]),
         zip(filename),
         dest('dist/')
@@ -95,14 +103,15 @@ const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher);
 const build = series(css, js);
 
-exports.build = build;
-exports.zip = series(build, zipper);
-exports.default = series(build, serve, watcher);
+const zipExport = series(build, zipper);
 
-exports.release = async () => {
-    // @NOTE: https://yarnpkg.com/lang/en/docs/cli/version/
+export { build };
+export { zipExport as zip };
+export default series(build, serve, watcher);
+
+const release = async () => {
     // require(./package.json) can run into caching issues, this re-reads from file everytime on release
-    let packageJSON = JSON.parse(fs.readFileSync('./package.json'));
+    let packageJSON = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     const newVersion = packageJSON.version;
 
     if (!newVersion || newVersion === '') {
@@ -120,14 +129,10 @@ exports.release = async () => {
     }
 
     try {
-        const result = await inquirer.prompt([{
-            type: 'input',
-            name: 'compatibleWithGhost',
+        const compatibleWithGhost = await input({
             message: 'Which version of Ghost is it compatible with?',
             default: '5.0.0'
-        }]);
-
-        const compatibleWithGhost = result.compatibleWithGhost;
+        });
 
         const releasesResponse = await releaseUtils.releases.get({
             userAgent: 'Casper',
@@ -174,3 +179,5 @@ exports.release = async () => {
         process.exit(1);
     }
 };
+
+export { release };

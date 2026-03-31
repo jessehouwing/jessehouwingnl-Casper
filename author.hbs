@@ -52,10 +52,10 @@
                 <div class="author-profile-meta">
                     
                     {{#if twitter}}
-                        <a class="author-profile-social-link" href="{{twitter_url}}" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
+                        <a class="author-profile-social-link" href="{{social_url type="twitter"}}" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
                     {{/if}}
                     {{#if facebook}}
-                        <a class="author-profile-social-link" href="{{facebook_url}}" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
+                        <a class="author-profile-social-link" href="{{social_url type="facebook"}}" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
                     {{/if}}
                     {{{block "links"}}}
                 </div>
