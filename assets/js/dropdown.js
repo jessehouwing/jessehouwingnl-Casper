@@ -21,12 +21,30 @@
         if (mediaQuery.matches) return;
         const submenuItems = [];
 
-        while ((nav.offsetWidth + 64) > menu.offsetWidth) {
-            if (nav.lastElementChild) {
-                submenuItems.unshift(nav.lastElementChild);
-                nav.lastElementChild.remove();
-            } else {
-                return;
+        // Read all dimensions first (single layout calculation)
+        const menuWidth = menu.offsetWidth;
+        const items = Array.from(nav.children);
+        const itemWidths = items.map(function(item) {
+            return item.offsetWidth;
+        });
+        
+        // Calculate which items need to move (no DOM changes yet)
+        const availableWidth = menuWidth - 64;
+        let totalWidth = 0;
+        let overflowIndex = -1;
+        
+        for (let i = 0; i < itemWidths.length; i++) {
+            totalWidth += itemWidths[i];
+            if (totalWidth > availableWidth && overflowIndex === -1) {
+                overflowIndex = i;
+            }
+        }
+        
+        // Now batch all DOM changes
+        if (overflowIndex !== -1) {
+            for (let i = items.length - 1; i >= overflowIndex; i--) {
+                submenuItems.unshift(items[i]);
+                items[i].remove();
             }
         }
 
