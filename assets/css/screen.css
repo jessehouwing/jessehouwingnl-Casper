@@ -575,16 +575,32 @@ production stylesheet in assets/built/screen.css
     height: 18px;
 }
 
-/* Responsive social icons - tablet */
-@media (max-width: 991px) {
+/* Responsive social icons - small desktop */
+@media (max-width: 1200px) {
     .gh-head-actions > .gh-social {
-        max-width: 140px;
+        max-width: 240px;
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 10px;
     }
     .gh-head-actions > .gh-social > .gh-social {
-        max-width: 140px;
+        max-width: 240px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+}
+
+/* Responsive social icons - tablet */
+@media (max-width: 991px) {
+    .gh-head-actions > .gh-social {
+        max-width: 190px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    .gh-head-actions > .gh-social > .gh-social {
+        max-width: 190px;
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 10px;
