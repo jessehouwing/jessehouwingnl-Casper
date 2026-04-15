@@ -11,3 +11,4 @@ When editing `assets/css/*.css` files:
 - After fixing a responsive issue at one size, **proactively ask** whether similar fixes are needed at other breakpoints
 - Watch for layout shifts caused by flex-wrap, gap changes, or max-width constraints
 - Test overflow behavior for navigation, social icons, and other multi-item containers
+- CSS is post processed with Autoprefixer and PostCSS, so you can use modern CSS features without worrying about browser support. Run `npx gulp build` to see the final output in `assets/dist/`

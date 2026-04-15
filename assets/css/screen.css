@@ -607,23 +607,16 @@ production stylesheet in assets/built/screen.css
     height: 18px;
 }
 
-/* Responsive social icons - small desktop (8 per row) */
-@media (max-width: 1200px) {
+/* Responsive social icons - tablet/desktop (7 per row) */
+@media (max-width: 1400px) {
     .gh-head-actions > .gh-social {
         display: grid;
-        grid-template-columns: repeat(8, auto);
+        grid-template-columns: repeat(7, auto);
         justify-content: end;
         gap: 10px;
     }
     .gh-head-actions > .gh-social > .gh-social {
         display: contents;
-    }
-}
-
-/* Responsive social icons - tablet (7 per row) */
-@media (max-width: 991px) {
-    .gh-head-actions > .gh-social {
-        grid-template-columns: repeat(7, auto);
     }
 }
 
