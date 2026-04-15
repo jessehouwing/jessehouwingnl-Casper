@@ -4076,7 +4076,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "casper-jessehouwingnl-v4@workspace:."
   dependencies:
-    "@inquirer/prompts": "npm:^8.3.2"
+    "@inquirer/prompts": "npm:^8.4.1"
     "@tryghost/release-utils": "npm:0.8.1"
     autoprefixer: "npm:^10.5.0"
     beeper: "npm:^3.0.0"
