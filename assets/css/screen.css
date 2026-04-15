@@ -2312,7 +2312,7 @@ html.dark-mode .post-card-image {
 }
 
 html.dark-mode :is(.post-card-tags, .post-card-meta, .article-tag a, .byline-meta-content, .pagination .page-number) {
-    color: color-mod(var(--color-secondary-text) l(-22%));
+    color: hsla(0, 0%, 100%, 0.6);
 }
 
 html.dark-mode .post-card-featured {
@@ -2427,7 +2427,7 @@ html.dark-mode .gh-content table:not(.gist table) td {
 }
 
 html.dark-mode .gh-content :is(input, textarea) {
-    color: color-mod(var(--color-midgrey) l(-30%));
+    color: hsla(0, 0%, 100%, 0.9);
 }
 
 html.dark-mode .site-archive-header .no-image {
@@ -2506,7 +2506,7 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color :is(.post-card-tags, .post-card-meta, .article-tag a, .byline-meta-content, .pagination .page-number) {
-        color: color-mod(var(--color-secondary-text) l(-22%));
+        color: hsla(0, 0%, 100%, 0.6);
     }
 
     html.auto-color .post-card-featured {
@@ -2621,7 +2621,7 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color .gh-content :is(input, textarea) {
-        color: color-mod(var(--color-midgrey) l(-30%));
+        color: hsla(0, 0%, 100%, 0.9);
     }
 
     html.auto-color .site-archive-header .no-image {
