@@ -1,4 +1,13 @@
 {{!< author}}
 
 {{#contentFor "links"}}
+{{#if website}}
+<a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener me">{{website}}</a>
+{{/if}}
+{{#if twitter}}
+<a class="author-profile-social-link" href="{{social_url type="twitter"}}" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
+{{/if}}
+{{#if facebook}}
+<a class="author-profile-social-link" href="{{social_url type="facebook"}}" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
+{{/if}}
 {{/contentFor}}

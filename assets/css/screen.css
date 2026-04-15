@@ -1153,7 +1153,7 @@ a.gh-head-button {
     display: block;
     width: 100%;
     height: 100%;
-    background: color-mod(var(--color-lightgrey) l(+10%));
+    background: color-mod(var(--color-lightgrey) lightness(+10%));
     border-radius: 100%;
 
     object-fit: cover;
@@ -1698,7 +1698,7 @@ except for when immediately preceeded by a heading */
 }
 
 .kg-header-card.kg-style-light h2.kg-header-card-header {
-    color: color-mod(var(--color-darkgrey) l(-5%));
+    color: color-mod(var(--color-darkgrey) lightness(-5%));
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .kg-header-card h2.kg-header-card-header {
@@ -1818,13 +1818,13 @@ iframe.instagram-media + script + :not([id]) {
     letter-spacing: 0.2px;
     text-align: left;
     text-transform: uppercase;
-    background-color: color-mod(var(--color-wash) l(+4%));
+    background-color: color-mod(var(--color-wash) lightness(97%));
 }
 
 .gh-content table:not(.gist table) th,
 .gh-content table:not(.gist table) td {
     padding: 6px 12px;
-    border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
+    border: color-mod(var(--color-wash) lightness(92%) saturation(39%)) 1px solid;
 }
 
 
@@ -1833,8 +1833,40 @@ iframe.instagram-media + script + :not([id]) {
 
 .article-byline {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 16px;
     margin: min(24px, 5.6vmin) 0 0;
+}
+
+.gh-button-share {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0.5em 1.2em;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+    color: rgba(0, 0, 0, 0.85);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.gh-button-share:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+html.dark-mode .gh-button-share {
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .gh-button-share:hover {
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .article-byline-content {
@@ -1932,7 +1964,7 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .footer-cta-button:hover {
-    border-color: color-mod(var(--color-border) l(-12%));
+    border-color: color-mod(var(--color-border) lightness(-12%));
 }
 
 .footer-cta-button span {
@@ -2033,7 +2065,7 @@ iframe.instagram-media + script + :not([id]) {
     height: 80px;
     object-fit: cover;
     margin: 0 0 2rem;
-    background: color-mod(var(--color-lightgrey) l(+10%));
+    background: color-mod(var(--color-lightgrey) lightness(+10%));
     border-radius: 50%;
 }
 
@@ -2178,7 +2210,7 @@ iframe.instagram-media + script + :not([id]) {
     padding-top: 48px;
     padding-bottom: 140px;
     color: #fff;
-    background: color-mod(var(--color-darkgrey) l(-5%));
+    background: color-mod(var(--color-darkgrey) lightness(-5%));
 }
 
 .page-template .site-footer {
@@ -2273,7 +2305,7 @@ html.dark-mode img {
 }
 
 html.dark-mode kbd {
-    background: color-mod(var(--color-darkmode) l(+5%));
+    background: color-mod(var(--color-darkmode) lightness(+5%));
     border-color: rgba(255, 255, 255, 0.15);
     box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.15);
 }
@@ -2310,7 +2342,7 @@ html.dark-mode .post-card-image {
 }
 
 html.dark-mode :is(.post-card-tags, .post-card-meta, .article-tag a, .byline-meta-content, .pagination .page-number) {
-    color: hsla(0, 0%, 100%, 0.6);
+    color: var(--color-secondary-text);
 }
 
 html.dark-mode .post-card-featured {
@@ -2346,12 +2378,12 @@ html.dark-mode .article-excerpt {
 }
 
 html.dark-mode .post-full-image {
-    background-color: color-mod(var(--color-darkmode) l(+8%));
+    background-color: color-mod(var(--color-darkmode) lightness(+8%));
 }
 
 html.dark-mode .author-avatar {
     border-color: var(--color-darkmode);
-    background-color: color-mod(var(--color-darkmode) l(+8%));
+    background-color: color-mod(var(--color-darkmode) lightness(+8%));
 }
 
 html.dark-mode .author-profile-image {
@@ -2375,12 +2407,12 @@ html.dark-mode .gh-content > [id] {
 }
 
 html.dark-mode .gh-content pre {
-    background: color-mod(var(--color-darkgrey) l(-8%));
+    background: color-mod(var(--color-darkgrey) lightness(-8%));
 }
 
 html.dark-mode .gh-content :not(pre) > code {
-    background: color-mod(var(--color-darkgrey) l(+6%));
-    border-color: color-mod(var(--color-darkmode) l(+8%));
+    background: color-mod(var(--color-darkgrey) lightness(+6%));
+    border-color: color-mod(var(--color-darkmode) lightness(+8%));
     color: var(--color-wash);
 }
 
@@ -2394,11 +2426,11 @@ html.dark-mode .gh-content code {
 }
 
 html.dark-mode hr {
-    border-top-color: color-mod(var(--color-darkmode) l(+8%));
+    border-top-color: #424242;
 }
 
 html.dark-mode .gh-content hr:after {
-    background: color-mod(var(--color-darkmode) l(+8%));
+    background: color-mod(var(--color-darkmode) lightness(+8%));
     box-shadow: var(--color-darkmode) 0 0 0 5px;
 }
 
@@ -2411,21 +2443,21 @@ html.dark-mode figcaption strong {
 }
 
 html.dark-mode .gh-content table:not(.gist table) td:first-child {
-    background-image: linear-gradient(to right, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) a(0%)) 100%);
+    background-image: linear-gradient(to right, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) alpha(0%)) 100%);
 }
 
 html.dark-mode .gh-content table:not(.gist table) td:last-child {
-    background-image: linear-gradient(to left, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) a(0%)) 100%);
+    background-image: linear-gradient(to left, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) alpha(0%)) 100%);
 }
 
 html.dark-mode .gh-content table:not(.gist table) th {
     color: rgba(255, 255, 255, 0.85);
-    background-color: color-mod(var(--color-darkmode) l(+8%));
+    background-color: color-mod(var(--color-darkmode) lightness(17%));
 }
 
 html.dark-mode .gh-content table:not(.gist table) th,
 html.dark-mode .gh-content table:not(.gist table) td {
-    border: color-mod(var(--color-darkmode) l(+8%)) 1px solid;
+    border: color-mod(var(--color-darkmode) lightness(17%)) 1px solid;
 }
 
 html.dark-mode .gh-content :is(input, textarea) {
@@ -2438,11 +2470,11 @@ html.dark-mode .site-archive-header .no-image {
 }
 
 html.dark-mode .kg-header-card.kg-style-dark {
-    background: color-mod(var(--color-darkgrey) l(-5%));
+    background: color-mod(var(--color-darkgrey) lightness(-5%));
 }
 
 html.dark-mode .kg-header-card.kg-style-light {
-    background: color-mod(var(--color-darkgrey) l(+5%));
+    background: color-mod(var(--color-darkgrey) lightness(+5%));
 }
 
 html.dark-mode .kg-header-card h2.kg-header-card-header,
@@ -2478,7 +2510,7 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color kbd {
-        background: color-mod(var(--color-darkmode) l(+5%));
+        background: color-mod(var(--color-darkmode) lightness(+5%));
         border-color: rgba(255, 255, 255, 0.15);
         box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.15);
     }
@@ -2515,7 +2547,7 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color :is(.post-card-tags, .post-card-meta, .article-tag a, .byline-meta-content, .pagination .page-number) {
-        color: hsla(0, 0%, 100%, 0.6);
+        color: var(--color-secondary-text);
     }
 
     html.auto-color .post-card-featured {
@@ -2551,12 +2583,12 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color .post-full-image {
-        background-color: color-mod(var(--color-darkmode) l(+8%));
+        background-color: color-mod(var(--color-darkmode) lightness(+8%));
     }
 
     html.auto-color .author-avatar {
         border-color: var(--color-darkmode);
-        background-color: color-mod(var(--color-darkmode) l(+8%));
+        background-color: color-mod(var(--color-darkmode) lightness(+8%));
     }
 
     html.auto-color .author-profile-image {
@@ -2571,6 +2603,15 @@ html.dark-mode .footer-cta-title {
         color: #fff;
     }
 
+    html.auto-color .gh-button-share {
+        color: rgba(255, 255, 255, 0.85);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    html.auto-color .gh-button-share:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
     html.auto-color .no-image .author-social-link a {
         color: rgba(255, 255, 255, 0.75);
     }
@@ -2580,12 +2621,12 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color .gh-content pre {
-        background: color-mod(var(--color-darkgrey) l(-8%));
+        background: color-mod(var(--color-darkgrey) lightness(-8%));
     }
 
     html.auto-color .gh-content :not(pre) > code {
-        background: color-mod(var(--color-darkgrey) l(+6%));
-        border-color: color-mod(var(--color-darkmode) l(+8%));
+        background: color-mod(var(--color-darkgrey) lightness(+6%));
+        border-color: color-mod(var(--color-darkmode) lightness(+8%));
         color: var(--color-wash);
     }
 
@@ -2599,11 +2640,11 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color hr {
-        border-top-color: color-mod(var(--color-darkmode) l(+8%));
+        border-top-color: #424242;
     }
 
     html.auto-color .gh-content hr:after {
-        background: color-mod(var(--color-darkmode) l(+8%));
+        background: color-mod(var(--color-darkmode) lightness(+8%));
         box-shadow: var(--color-darkmode) 0 0 0 5px;
     }
 
@@ -2616,21 +2657,21 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color .gh-content table:not(.gist table) td:first-child {
-        background-image: linear-gradient(to right, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) a(0%)) 100%);
+        background-image: linear-gradient(to right, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) alpha(0%)) 100%);
     }
 
     html.auto-color .gh-content table:not(.gist table) td:last-child {
-        background-image: linear-gradient(to left, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) a(0%)) 100%);
+        background-image: linear-gradient(to left, var(--color-darkmode) 50%, color-mod(var(--color-darkmode) alpha(0%)) 100%);
     }
 
     html.auto-color .gh-content table:not(.gist table) th {
         color: rgba(255, 255, 255, 0.85);
-        background-color: color-mod(var(--color-darkmode) l(+8%));
+        background-color: color-mod(var(--color-darkmode) lightness(17%));
     }
 
     html.auto-color .gh-content table:not(.gist table) th,
     html.auto-color .gh-content table:not(.gist table) td {
-        border: color-mod(var(--color-darkmode) l(+8%)) 1px solid;
+        border: color-mod(var(--color-darkmode) lightness(17%)) 1px solid;
     }
 
     html.auto-color .gh-content :is(input, textarea) {
@@ -2643,11 +2684,11 @@ html.dark-mode .footer-cta-title {
     }
 
     html.auto-color .kg-header-card.kg-style-dark {
-        background: color-mod(var(--color-darkgrey) l(-5%));
+        background: color-mod(var(--color-darkgrey) lightness(-5%));
     }
 
     html.auto-color .kg-header-card.kg-style-light {
-        background: color-mod(var(--color-darkgrey) l(+5%));
+        background: color-mod(var(--color-darkgrey) lightness(+5%));
     }
 
     html.auto-color .kg-header-card h2.kg-header-card-header,

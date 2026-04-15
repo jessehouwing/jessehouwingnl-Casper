@@ -46,19 +46,7 @@
                 {{#if location}}
                     <div class="author-profile-location">{{location}}</div>
                 {{/if}}
-                {{#if website}}
-                    <div class="author-profile-meta">
-                            <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener me">{{website}}</a>
-                    </div>
-                {{/if}}
                 <div class="author-profile-meta">
-                    
-                    {{#if twitter}}
-                        <a class="author-profile-social-link" href="{{social_url type="twitter"}}" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
-                    {{/if}}
-                    {{#if facebook}}
-                        <a class="author-profile-social-link" href="{{social_url type="facebook"}}" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
-                    {{/if}}
                     {{{block "links"}}}
                 </div>
             </footer>

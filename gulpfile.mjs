@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import releaseUtils from '@tryghost/release-utils';
 import { input } from '@inquirer/prompts';
+import { mergeLocales } from '@tryghost/theme-translations/build/index.js';
 
 // gulp plugins and utils
 import livereload from 'gulp-livereload';
@@ -97,11 +98,19 @@ function zipper(done) {
     ], handleError(done));
 }
 
+function locales(done) {
+    mergeLocales({
+        local: './locales-local',
+        output: './locales'
+    })(done);
+}
+
 const cssWatcher = () => watch('assets/css/**', css);
 const jsWatcher = () => watch('assets/js/**', js);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
-const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher);
-const build = series(css, js);
+const localesWatcher = () => watch('./locales-local/**/*.json', locales);
+const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher, localesWatcher);
+const build = series(css, js, locales);
 
 const zipExport = series(build, zipper);
 
@@ -131,7 +140,7 @@ const release = async () => {
     try {
         const compatibleWithGhost = await input({
             message: 'Which version of Ghost is it compatible with?',
-            default: '5.0.0'
+            default: '6.0.0'
         });
 
         const releasesResponse = await releaseUtils.releases.get({

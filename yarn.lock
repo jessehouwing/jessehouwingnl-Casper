@@ -2863,6 +2863,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tryghost/theme-translations@npm:~0.0.16":
+  version: 0.0.16
+  resolution: "@tryghost/theme-translations@npm:0.0.16"
+  checksum: 10c0/6c219b7a96c49dd0ee7e90f700a37402d715a1038fcfeebbcd259d6ec05b5912597b2d3f6889620970f52b2afa6ebef70eb83de7d00245432ec547ddf75e319c
+  languageName: node
+  linkType: hard
+
 "@tryghost/tpl@npm:^2.0.3":
   version: 2.0.3
   resolution: "@tryghost/tpl@npm:2.0.3"
@@ -3801,6 +3808,7 @@ __metadata:
   dependencies:
     "@inquirer/prompts": "npm:^8.4.1"
     "@tryghost/release-utils": "npm:0.8.1"
+    "@tryghost/theme-translations": "npm:~0.0.16"
     autoprefixer: "npm:^10.5.0"
     beeper: "npm:^3.0.0"
     cssnano: "npm:^7.1.5"

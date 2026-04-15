@@ -15,7 +15,7 @@
                 </span>
                 {{/primary_tag}}
                 {{#if featured}}
-                <span class="post-card-featured">{{> "icons/fire"}} Featured</span>
+                <span class="post-card-featured">{{> "icons/fire"}} {{t "Featured"}}</span>
                 {{/if}}
             </div>
 
@@ -47,12 +47,13 @@
                         <div class="byline-meta-content">
                             <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
                             {{#if reading_time}}
-                            <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                            <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
                             {{/if}}
                         </div>
                     </div>
 
                 </section>
+                <a href="#/share" class="gh-button gh-button-share">{{t "Share"}}</a>
             </div>
 
             {{#match @custom.post_image_style "!=" "Hidden"}}
@@ -99,8 +100,8 @@
     <div class="inner">
         {{#if @custom.email_signup_text}}<h2 class="footer-cta-title">{{@custom.email_signup_text}}</h2>{{/if}}
         <a class="footer-cta-button" href="#/portal" data-portal>
-            <div class="footer-cta-input">Enter your email</div>
-            <span>Subscribe</span>
+            <div class="footer-cta-input">{{t "Enter your email"}}</div>
+            <span>{{t "Subscribe"}}</span>
         </a>
     </div>
 </section>
