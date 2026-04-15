@@ -575,45 +575,30 @@ production stylesheet in assets/built/screen.css
     height: 18px;
 }
 
-/* Responsive social icons - small desktop */
+/* Responsive social icons - small desktop (8 per row) */
 @media (max-width: 1200px) {
     .gh-head-actions > .gh-social {
-        max-width: 240px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        display: grid;
+        grid-template-columns: repeat(8, auto);
+        justify-content: end;
         gap: 10px;
     }
     .gh-head-actions > .gh-social > .gh-social {
-        max-width: 240px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 10px;
+        display: contents;
     }
 }
 
-/* Responsive social icons - tablet */
+/* Responsive social icons - tablet (7 per row) */
 @media (max-width: 991px) {
     .gh-head-actions > .gh-social {
-        max-width: 190px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 10px;
-    }
-    .gh-head-actions > .gh-social > .gh-social {
-        max-width: 190px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 10px;
+        grid-template-columns: repeat(7, auto);
     }
 }
 
-/* Responsive social icons - phone */
+/* Responsive social icons - phone (6 per row, centered) */
 @media (max-width: 767px) {
     .gh-head-actions > .gh-social {
-        max-width: 180px;
-        justify-content: center;
-    }
-    .gh-head-actions > .gh-social > .gh-social {
+        grid-template-columns: repeat(6, auto);
         justify-content: center;
     }
 }
