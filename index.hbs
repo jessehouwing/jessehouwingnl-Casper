@@ -25,11 +25,9 @@ into the {body} of the default.hbs template --}}
     {{#match @custom.header_style "!=" "Hidden"}}
         <div class="site-header-inner inner">
             {{#match @custom.navigation_layout "Logo on cover"}}
-                {{#if @site.logo}}
-                    <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" width="500" height="120" loading="eager">
-                {{else}}
-                    <h1 class="site-title">{{@site.title}}</h1>
-                {{/if}}
+                <div class="site-logo" role="img" aria-label="{{@site.title}}">
+                    {{> "logo/scrumbug-logo"}}
+                </div>
             {{/match}}
             {{#if @site.description}}
                 <p class="site-description">{{@site.description}}</p>

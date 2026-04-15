@@ -166,9 +166,19 @@ production stylesheet in assets/built/screen.css
     max-height: 120px;
 }
 
+.site-logo svg {
+    max-height: 120px;
+    width: auto;
+    height: auto;
+}
+
 .site-header-content.left-aligned .site-logo {
     margin-right: auto;
     margin-left: 0;
+    max-height: 96px;
+}
+
+.site-header-content.left-aligned .site-logo svg {
     max-height: 96px;
 }
 
@@ -267,6 +277,10 @@ production stylesheet in assets/built/screen.css
     }
     .site-logo {
         max-width: 60%;
+    }
+    .site-logo svg {
+        max-width: 100%;
+        max-height: 80px;
     }
     .site-title {
         font-size: 3.4rem !important;
@@ -449,7 +463,8 @@ production stylesheet in assets/built/screen.css
     color: #fff;
 }
 
-.gh-head-logo img {
+.gh-head-logo img,
+.gh-head-logo svg {
     max-height: 40px;
     height: 40px;
     width: auto;
@@ -2085,6 +2100,16 @@ iframe.instagram-media + script + :not([id]) {
 
 /* 9. Error Template
 /* ---------------------------------------------------------- */
+
+.site-nav-logo {
+    display: block;
+}
+
+.site-nav-logo svg {
+    max-height: 30px;
+    width: auto;
+    height: auto;
+}
 
 .error-content {
     padding: 14vw 4vw 2vw;
