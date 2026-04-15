@@ -17,6 +17,7 @@ into the {body} of the default.hbs template --}}
                 src="{{img_url @site.cover_image size="xl"}}"
                 alt="{{@site.title}}"
                 fetchpriority="high"
+                loading="eager"
             />
         {{/if}}
     {{/if}}
@@ -25,7 +26,7 @@ into the {body} of the default.hbs template --}}
         <div class="site-header-inner inner">
             {{#match @custom.navigation_layout "Logo on cover"}}
                 {{#if @site.logo}}
-                    <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" width="500" height="120">
+                    <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" width="500" height="120" loading="eager">
                 {{else}}
                     <h1 class="site-title">{{@site.title}}</h1>
                 {{/if}}
