@@ -842,9 +842,11 @@ a.gh-head-button {
     }
 
     #gh-head .gh-head-button {
-        width: 100%;
+        width: auto;
+        min-width: 180px;
         font-size: 1.8rem;
         text-transform: none;
+        text-align: center;
         opacity: 0;
         transform: translateY(8px);
     }
