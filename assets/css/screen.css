@@ -578,15 +578,16 @@ production stylesheet in assets/built/screen.css
 /* Responsive social icons - tablet */
 @media (max-width: 991px) {
     .gh-head-actions > .gh-social {
-        max-width: 200px;
+        max-width: 140px;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 12px;
+        gap: 10px;
     }
     .gh-head-actions > .gh-social > .gh-social {
+        max-width: 140px;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 12px;
+        gap: 10px;
     }
 }
 
