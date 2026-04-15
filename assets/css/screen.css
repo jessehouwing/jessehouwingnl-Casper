@@ -125,6 +125,7 @@ production stylesheet in assets/built/screen.css
     min-height: 560px;
     background-color: var(--ghost-accent-color);
     color: #fff;
+    justify-content: center;
 }
 
 .site-header-content.left-aligned {
@@ -154,6 +155,7 @@ production stylesheet in assets/built/screen.css
     border-radius: 12px;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    text-align: center;
 }
 
 .site-header-content.left-aligned .site-header-inner {
