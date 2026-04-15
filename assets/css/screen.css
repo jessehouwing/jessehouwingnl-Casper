@@ -596,7 +596,7 @@ production stylesheet in assets/built/screen.css
 }
 
 /* Responsive social icons - phone (6 per row, centered) */
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     .gh-head-actions > .gh-social {
         grid-template-columns: repeat(6, auto);
         justify-content: center;
@@ -643,15 +643,7 @@ production stylesheet in assets/built/screen.css
     background: #fff;
 }
 
-@media (max-width: 767px) {
-    .gh-head-members {
-        flex-direction: column-reverse;
-        gap: 16px;
-        width: 100%;
-    }
-}
-
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     .gh-head-members {
         flex-direction: column-reverse;
         gap: 16px;
@@ -708,13 +700,13 @@ a.gh-head-button {
     margin-right: -4px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     .gh-head-actions .gh-search {
         display: none;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 801px) {
     .gh-head-brand .gh-search {
         display: none;
     }
@@ -776,7 +768,7 @@ a.gh-head-button {
 /* ---------------------------------------------------------- */
 /* IDs needed to ensure sufficient specificity */
 
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     #gh-head {
         height: 64px;
     }
