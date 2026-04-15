@@ -3812,7 +3812,7 @@ __metadata:
     gulp-uglify: "npm:3.0.2"
     gulp-zip: "npm:^6.1.0"
     inquirer: "npm:^13.4.1"
-    postcss: "npm:^8.5.9"
+    postcss: "npm:^8.5.10"
     postcss-color-mod-function: "npm:^4.1.1"
     postcss-easy-import: "npm:4.0.0"
     pump: "npm:^3.0.4"
@@ -7397,7 +7397,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.9":
+"postcss@npm:^8.5.10":
   version: 8.5.10
   resolution: "postcss@npm:8.5.10"
   dependencies:
