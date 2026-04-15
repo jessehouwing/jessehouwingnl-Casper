@@ -150,6 +150,7 @@ production stylesheet in assets/built/screen.css
 /* Backdrop for better readability on cover images */
 .has-cover .site-header-inner {
     display: inline-block;
+    width: auto;
     padding: 20px 28px;
     background: rgba(4, 34, 125, 0.25);
     border-radius: 12px;
