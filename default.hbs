@@ -78,7 +78,7 @@
                         <a class="gh-social-link gh-social-linkedin" href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener me">{{> "icons/linkedin"}}</a>
                         <a class="gh-social-link gh-social-stackoverflow" href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener me">{{> "icons/stackoverflow"}}</a>
                         <a class="gh-social-link gh-social-mvp" href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" title="Microsoft MVP Profile" target="_blank" rel="noopener me">{{> "icons/mvp"}}</a>
-                        <a class="gh-social-link gh-social-twitter" href="{{social_url type="twitter" url=@site.twitter}}" title="Twitter" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
+                        <a class="gh-social-link gh-social-x" href="{{social_url type="twitter" url=@site.twitter}}" title="X" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
                         <a class="gh-social-link phone-button" href="tel:+31641813338" title="Call" target="_blank" rel="noopener me">{{> "icons/phone"}}</a>
                         <a class="gh-social-link rss-button" href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener me">{{> "icons/rss"}}</a>
                     </div>
@@ -101,9 +101,17 @@
             </nav>
             <div>
                 {{#if @site.facebook}}<a href="{{social_url type="facebook" url=@site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>{{/if}}
-                {{#if @site.twitter}}<a href="{{social_url type="twitter" url=@site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>{{/if}}
+                {{#if @site.twitter}}<a href="{{social_url type="twitter" url=@site.twitter}}" title="X" target="_blank" rel="noopener">X</a>{{/if}}
                 <a href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/jessehouwing/" title="GitHub" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://bsky.app/profile/jessehouwing.net" title="Bluesky" target="_blank" rel="noopener">Bluesky</a>
+                <a href="https://hachyderm.io/@jessehouwing" title="Mastodon" target="_blank" rel="noopener">Mastodon</a>
+                <a href="https://www.instagram.com/jesse.houwing/" title="Instagram" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.threads.net/@jesse.houwing" title="Threads" target="_blank" rel="noopener">Threads</a>
+                <a href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener">StackOverflow</a>
+                <a href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" title="Microsoft MVP Profile" target="_blank" rel="noopener">MVP</a>
+                <a href="tel:+31641813338" title="Call" target="_blank" rel="noopener">Call</a>
+                <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a>
                 <div class="gh-powered-by"><a href="https://ghost.org/" target="_blank" rel="noopener">{{t "Powered by Ghost"}}</a></div>
             </div>
         </div>
