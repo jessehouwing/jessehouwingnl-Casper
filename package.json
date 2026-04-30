@@ -45,21 +45,21 @@
     "bugs": "https://github.com/TryGhost/Casper/issues",
     "contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
     "devDependencies": {
-        "@inquirer/prompts": "^8.4.1",
+        "@inquirer/prompts": "^8.4.2",
         "@tryghost/release-utils": "0.8.1",
         "@tryghost/theme-translations": "~0.0.16",
         "autoprefixer": "^10.5.0",
         "beeper": "^3.0.0",
-        "cssnano": "^7.1.5",
-        "gscan": "^6.0.0",
+        "cssnano": "^7.1.7",
+        "gscan": "^6.0.1",
         "gulp": "^5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
         "gulp-postcss": "^10.0.0",
         "gulp-uglify": "3.0.2",
         "gulp-zip": "^6.1.0",
-        "inquirer": "^13.4.1",
-        "postcss": "^8.5.10",
+        "inquirer": "^13.4.2",
+        "postcss": "^8.5.12",
         "postcss-color-mod-function": "^4.1.1",
         "postcss-easy-import": "4.0.0",
         "pump": "^3.0.4"
@@ -179,5 +179,5 @@
             "github>TryGhost/Themes:packages/theme-translations/renovate-config"
         ]
     },
-    "packageManager": "yarn@4.13.0"
+    "packageManager": "yarn@4.14.1"
 }
