@@ -59,6 +59,7 @@
             {{#match @custom.post_image_style "!=" "Hidden"}}
             {{#if feature_image}}
             <figure class="article-image">
+                <div class="article-image-frame">
                 <img srcset="{{img_url feature_image size="s"}} 300w,
                             {{img_url feature_image size="m"}} 600w,
                             {{img_url feature_image size="l"}} 1000w,
@@ -68,6 +69,7 @@
                      alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                      fetchpriority="high"
                      loading="eager" />
+                </div>
                 {{#if feature_image_caption}}
                 <figcaption>{{feature_image_caption}}</figcaption>
                 {{/if}}
