@@ -248,7 +248,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/prompts@npm:^8.4.2, @inquirer/prompts@npm:^8.5.2":
+"@inquirer/prompts@npm:^8.5.2":
   version: 8.5.2
   resolution: "@inquirer/prompts@npm:8.5.2"
   dependencies:
@@ -3732,7 +3732,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "casper-jessehouwingnl-v4@workspace:."
   dependencies:
-    "@inquirer/prompts": "npm:^8.4.2"
+    "@inquirer/prompts": "npm:^8.5.2"
     "@tryghost/release-utils": "npm:0.8.1"
     "@tryghost/theme-translations": "npm:~0.0.20"
     autoprefixer: "npm:^10.5.0"
