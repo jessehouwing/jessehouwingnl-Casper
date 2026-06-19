@@ -2799,10 +2799,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tryghost/theme-translations@npm:~0.0.21":
-  version: 0.0.21
-  resolution: "@tryghost/theme-translations@npm:0.0.21"
-  checksum: 10c0/3e20cc543e7e04859399e405b096d031fa76bb9cf3dcabf63f0dcc4ac9ffde5d2e31b4e77d12c02c575b539c2ba7da4eaac602a9d873f98eb6a36f1124c0306c
+"@tryghost/theme-translations@npm:~0.0.22":
+  version: 0.0.22
+  resolution: "@tryghost/theme-translations@npm:0.0.22"
+  checksum: 10c0/8994908f3db3e89690ddbcfc031393babe439ef37ff1b61b36e8ee87702571ee147ce10e0b06401b1ccb04c206696a8b9eafd0fe2abe7bbb61abb1d383db02f2
   languageName: node
   linkType: hard
 
@@ -3734,7 +3734,7 @@ __metadata:
   dependencies:
     "@inquirer/prompts": "npm:^8.5.2"
     "@tryghost/release-utils": "npm:0.8.1"
-    "@tryghost/theme-translations": "npm:~0.0.21"
+    "@tryghost/theme-translations": "npm:~0.0.22"
     autoprefixer: "npm:^10.5.0"
     beeper: "npm:^3.0.0"
     cssnano: "npm:^8.0.1"
