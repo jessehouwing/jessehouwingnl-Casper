@@ -34,7 +34,7 @@ jobs:
       - run: |
           yarn install
           yarn zip
-      - uses: tryghost/action-deploy-theme@v2.0.0
+      - uses: tryghost/action-deploy-theme@fabdc560bd55f2e9316e7cb3d726d77418fdcfa5 # v2.0.3
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
