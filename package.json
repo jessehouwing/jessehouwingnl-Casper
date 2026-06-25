@@ -47,11 +47,11 @@
     "devDependencies": {
         "@inquirer/prompts": "^8.5.2",
         "@tryghost/release-utils": "0.8.1",
-        "@tryghost/theme-translations": "~0.0.21",
-        "autoprefixer": "^10.5.0",
+        "@tryghost/theme-translations": "~0.0.22",
+        "autoprefixer": "^10.5.2",
         "beeper": "^3.0.0",
-        "cssnano": "^8.0.1",
-        "gscan": "^6.2.1",
+        "cssnano": "^8.0.2",
+        "gscan": "^6.4.1",
         "gulp": "^5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
@@ -179,5 +179,5 @@
             "github>TryGhost/Themes:packages/theme-translations/renovate-config"
         ]
     },
-    "packageManager": "yarn@4.16.0"
+    "packageManager": "yarn@4.17.0"
 }
