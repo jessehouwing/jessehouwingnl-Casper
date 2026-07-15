@@ -46,7 +46,7 @@
     "contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
     "devDependencies": {
         "@inquirer/prompts": "^8.5.2",
-        "@tryghost/release-utils": "0.8.1",
+        "@tryghost/release-utils": "0.9.1",
         "@tryghost/theme-translations": "~0.0.22",
         "autoprefixer": "^10.5.2",
         "beeper": "^3.0.0",
