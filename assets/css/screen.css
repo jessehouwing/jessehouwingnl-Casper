@@ -1784,17 +1784,14 @@ iframe.instagram-media + script + :not([id]) {
 
 /* Tables */
 .gh-content table:not(.gist table) {
-    display: inline-block;
-    overflow-x: auto;
     max-width: 100%;
-    width: auto;
+    width: 100%;
+    table-layout: fixed;
     border-spacing: 0;
     border-collapse: collapse;
     font-family: var(--font-sans);
     font-size: 1.6rem;
-    white-space: nowrap;
     vertical-align: top;
-    -webkit-overflow-scrolling: touch;
     background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
     background-attachment: scroll, scroll;
     background-size: 10px 100%, 10px 100%;
@@ -1828,6 +1825,8 @@ iframe.instagram-media + script + :not([id]) {
 .gh-content table:not(.gist table) td {
     padding: 6px 12px;
     border: color-mod(var(--color-wash) lightness(92%) saturation(39%)) 1px solid;
+    overflow-wrap: anywhere;
+    white-space: normal;
 }
 
 
