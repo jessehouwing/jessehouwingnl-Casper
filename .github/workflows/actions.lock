@@ -4,14 +4,14 @@
 version: 'v0.0.2'
 workflows:
     '.github/workflows/publish-theme.yml':
-        - 'actions/checkout@v7.0.0'
+        - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v6.4.0'
         - 'step-security/harden-runner@v2.19.4'
         - 'tryghost/action-deploy-theme@v2.0.3'
 dependencies:
-    'actions/checkout@v7.0.0':
-        ref: 'v7.0.0'
-        commit: 'sha1-9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0'
+    'actions/checkout@v7.0.1':
+        ref: 'v7.0.1'
+        commit: 'sha1-3d3c42e5aac5ba805825da76410c181273ba90b1'
         owner_id: 44036562
         repo_id: 197814629
     'actions/setup-node@v6.4.0':
