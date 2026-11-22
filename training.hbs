@@ -1,0 +1,62 @@
+{{!< default}}
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+        <header class="projects-header training-header">
+            <h1 class="article-title">Training</h1>
+            <p class="article-excerpt">Practical training in GitHub, Scrum, Azure and DevOps.</p>
+            <nav class="training-navigation" aria-label="Training categories">
+                <a href="#github">GitHub</a>
+                <a href="#scrum">Scrum</a>
+                <a href="#azure">Azure</a>
+                <a href="#phoenix-project">Phoenix Project</a>
+            </nav>
+        </header>
+
+        {{^is "paged"}}
+        {{#page}}
+        <section class="training-schedule gh-content" aria-label="Upcoming classes">
+            {{content}}
+        </section>
+        {{/page}}
+        {{/is}}
+
+        <section class="training-section" id="github">
+            <h2>GitHub</h2>
+            <div class="training-credentials">
+                <a href="https://stars.github.com/profiles/jessehouwing">GitHub Star</a>
+                {{> "mct-credential"}}
+            </div>
+            {{> "training-feed" category="#training-github"}}
+        </section>
+
+        <section class="training-section" id="scrum">
+            <h2>Scrum</h2>
+            <div class="training-credentials">
+                <a href="https://www.credly.com/badges/2243e821-bf32-4279-9901-06564c27bd57">
+                    <img src="https://images.credly.com/images/41d567f7-f570-49aa-bb6d-8d8b328c2b61/image.png" alt="" loading="lazy">
+                    Professional Scrum Trainer
+                </a>
+            </div>
+            {{> "training-feed" category="#training-scrum"}}
+        </section>
+
+        <section class="training-section" id="azure">
+            <h2>Azure</h2>
+            <div class="training-credentials">
+                <a href="https://www.credly.com/badges/4d920fc9-6acd-4329-883a-fbd5313144d4">
+                    <img src="https://images.credly.com/images/c4da2c74-dd74-4a97-a433-d8c21f06ca65/blob" alt="" loading="lazy">
+                    Microsoft MVP
+                </a>
+                {{> "mct-credential"}}
+            </div>
+            {{> "training-feed" category="#training-azure"}}
+        </section>
+
+        <section class="training-section" id="phoenix-project">
+            <h2>Phoenix Project</h2>
+            {{> "training-feed" category="#training-phoenix-project"}}
+        </section>
+        {{pagination}}
+    </div>
+</main>

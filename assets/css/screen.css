@@ -1048,8 +1048,79 @@ html.dark-mode .project-card {
     margin-top: max(6vmin, 48px);
 }
 
-.related-projects:not(:has(.project-card)) {
+.related-projects:not(:has(.project-card)),
+.related-training:not(:has(.training-card)) {
     display: none;
+}
+
+.related-projects,
+.related-training {
+    padding-top: max(4vmin, 32px);
+    border-top: 1px solid #8a939b;
+}
+
+.read-more-wrap.related-posts {
+    margin-top: max(6vmin, 48px);
+    padding-top: max(4vmin, 32px);
+    padding-bottom: max(4vmin, 32px);
+    background: #f1f4f6;
+}
+
+.related-posts h2 {
+    margin-bottom: 24px;
+}
+
+html.dark-mode .related-posts {
+    background: #292e33;
+}
+
+@media (prefers-color-scheme: dark) {
+    html.auto-color .related-posts {
+        background: #292e33;
+    }
+}
+
+.training-navigation,
+.training-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-items: center;
+}
+
+.training-navigation {
+    margin-top: 24px;
+    font-weight: 600;
+}
+
+.training-section,
+.training-schedule {
+    margin-top: max(6vmin, 48px);
+}
+
+.training-section:has(.training-card) .training-empty {
+    display: none;
+}
+
+.training-credentials {
+    margin-top: 16px;
+}
+
+.training-credentials a {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 600;
+}
+
+.training-credentials img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.training-feed {
+    padding-top: 24px;
 }
 
 .project-related-feed .post-card {

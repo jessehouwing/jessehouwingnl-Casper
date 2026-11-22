@@ -1,0 +1,48 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Training responsive layout check</title>
+<div id="result">RUNNING</div>
+<script>
+const cases = [1200, 991, 800, 480].flatMap(width => [false, true].map(dark => ({width, dark})));
+const results = [];
+for (const {width, dark} of cases) {
+    const frame = document.createElement("iframe");
+    frame.style.cssText = `width:${width}px;height:1500px;border:0`;
+    frame.srcdoc = `<!doctype html><html ${dark ? 'class="dark-mode"' : ""}><head>
+        <link rel="stylesheet" href="../assets/built/screen.css"></head><body>
+        <div class="outer"><div class="inner">
+            <nav class="training-navigation"><a>GitHub</a><a>Scrum</a><a>Azure</a><a>Phoenix Project</a></nav>
+            <aside class="read-more-wrap related-posts"><h2>Related posts</h2><div class="read-more">
+                <article class="post-card">Post one</article><article class="post-card">Post two</article><article class="post-card">Post three</article>
+            </div></aside>
+            <aside class="project-related related-projects"><h2>Related projects</h2><div class="project-related-feed">
+                <article class="project-card"><div class="project-card-content">Project</div></article>
+                <article class="project-card"><div class="project-card-content">Project</div></article>
+                <article class="project-card"><div class="project-card-content">Project</div></article>
+            </div></aside>
+            <aside class="project-related related-training"><h2>Related training</h2><div class="project-related-feed">
+                <article class="project-card training-card"><div class="project-card-content">Course</div></article>
+            </div></aside>
+        </div></div></body></html>`;
+    frame.onload = () => {
+        const doc = frame.contentDocument;
+        const view = frame.contentWindow;
+        const related = doc.querySelector(".related-posts");
+        const projects = doc.querySelector(".related-projects");
+        const training = doc.querySelector(".related-training");
+        const columns = view.getComputedStyle(projects.querySelector(".project-related-feed")).gridTemplateColumns.split(" ").length;
+        const expectedColumns = width > 991 ? 3 : width > 767 ? 2 : 1;
+        const background = view.getComputedStyle(related).backgroundColor;
+        const expectedBackground = dark ? "rgb(41, 46, 51)" : "rgb(241, 244, 246)";
+        const ok = doc.documentElement.scrollWidth <= width &&
+            related.getBoundingClientRect().bottom < projects.getBoundingClientRect().top &&
+            projects.getBoundingClientRect().bottom < training.getBoundingClientRect().top &&
+            columns === expectedColumns && background === expectedBackground;
+        results.push(`${width} ${dark ? "dark" : "light"}: ${ok ? "PASS" : "FAIL"} (columns=${columns}, background=${background}, scroll=${doc.documentElement.scrollWidth})`);
+        if (results.length === cases.length) {
+            document.querySelector("#result").textContent = results.join(" | ");
+        }
+    };
+    document.body.append(frame);
+}
+</script>
