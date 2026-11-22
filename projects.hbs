@@ -1,0 +1,18 @@
+{{!< default}}
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+        <header class="projects-header">
+            <h1 class="article-title">Projects</h1>
+            <p class="article-excerpt">Open-source projects, tools and extensions.</p>
+        </header>
+
+        <div class="project-feed">
+            {{#foreach posts}}
+                {{> "project-card"}}
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+    </div>
+</main>
