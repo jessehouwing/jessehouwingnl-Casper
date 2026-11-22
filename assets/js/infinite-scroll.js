@@ -5,8 +5,8 @@
  * Used on all pages where there is a list of posts (homepage, tag index, etc).
  *
  * When the page is scrolled to 300px from the bottom, the next page of posts
- * is fetched using the next link from {{ghost_head}}. Author pages use their
- * rendered pagination instead because their post list is filtered separately.
+ * is fetched using the next link from {{ghost_head}}. Author and tag pages use
+ * their rendered pagination instead because their post lists are filtered separately.
  *
  * The individual post items are extracted from the fetched pages by looking for
  * a wrapper element with the class "post-card". Any found elements are appended
@@ -16,7 +16,7 @@
 (function (window, document) {
     if (document.documentElement.classList.contains('no-infinite-scroll')) return;
 
-    var nextSelector = document.body.classList.contains('author-template')
+    var nextSelector = (document.body.classList.contains('author-template') || document.body.classList.contains('tag-template'))
         ? '.pagination .older-posts'
         : 'link[rel=next]';
     var nextElement = document.querySelector(nextSelector);

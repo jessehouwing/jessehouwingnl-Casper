@@ -3,9 +3,11 @@
 
 <main id="site-main" class="site-main outer">
 <div class="inner posts">
+    {{#tag}}
+    {{#get "posts" filter="tag:{{slug}}+tag:-hash-training" include="tags,authors" limit=@config.posts_per_page page=../pagination.page}}
     <div class="post-feed">
 
-        {{#tag}}
+        {{#with ..}}
         <section class="post-card post-card-large">
 
             {{#if feature_image}}
@@ -42,7 +44,7 @@
             </div>
 
         </section>
-        {{/tag}}
+        {{/with}}
 
         {{#foreach posts}}
             {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
@@ -51,7 +53,15 @@
 
     </div>
 
-    {{pagination}}
+    {{#match pagination.page ">" pagination.pages}}
+        <p>{{t "There are no posts on this page."}} <a href="{{page_url pagination.pages}}">{{t "View the last page of posts"}}</a>.</p>
+    {{else}}
+        {{pagination}}
+    {{/match}}
+    {{else}}
+        <p>{{t "Posts could not be loaded."}}</p>
+    {{/get}}
+    {{/tag}}
     
 </div>
 </main>

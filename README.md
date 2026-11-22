@@ -86,6 +86,8 @@ The collection's `data: page.training` loads the existing Ghost page with slug `
 
 Credential badge links are maintained in `training.hbs` and `partials/mct-credential.hbs`; replace the dated MVP and MCT badge links and images when renewed.
 
+The root collection filter above is required to exclude training from the homepage and its pagination; the theme cannot change Ghost's collection routing. Author archives exclude projects and training, while tag archives exclude training but retain projects. These archives query and paginate their filtered posts independently, including the displayed tag count. Ghost's automatically generated head pagination metadata still reflects its unfiltered taxonomy query; infinite scroll uses the rendered filtered pagination instead.
+
 # Social links
 
 The header and footer use the publication accounts configured in Ghost Admin's
