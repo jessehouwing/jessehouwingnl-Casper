@@ -929,6 +929,68 @@ a.gh-head-button {
 /* 5. Post Feed
 /* ---------------------------------------------------------- */
 
+.projects-header {
+    padding-top: max(4.8vmin, 36px);
+}
+
+.project-feed,
+.project-related-feed {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4.8vmin 4vmin;
+    padding-top: max(4.8vmin, 36px);
+}
+
+.project-card {
+    min-width: 0;
+    word-break: break-word;
+}
+
+.project-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.project-card-content .post-card-tags {
+    margin-bottom: 0;
+}
+
+.project-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    font-weight: 600;
+}
+
+.project-repository {
+    margin: 20px 0 0;
+    font-weight: 600;
+}
+
+.project-related {
+    margin-top: max(6vmin, 48px);
+}
+
+.project-related-feed .post-card {
+    grid-column: auto;
+}
+
+@media (max-width: 991px) {
+    .project-feed,
+    .project-related-feed {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .project-feed,
+    .project-related-feed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+    }
+}
+
 .post-feed {
     position: relative;
     display: grid;

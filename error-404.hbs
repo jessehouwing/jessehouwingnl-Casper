@@ -26,7 +26,7 @@ Keep this template as lightweight as you can!
 were looking for, let's give them some alternative stuff to read. --}}
 <aside class="read-more-wrap outer">
     <div class="read-more inner">
-        {{#get "posts" include="authors" limit="3" as |more_posts|}}
+        {{#get "posts" filter="tag:-hash-project" include="authors" limit="3" as |more_posts|}}
             {{#if more_posts}}
                 {{#foreach more_posts}}
                     {{> "post-card"}}

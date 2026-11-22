@@ -31,6 +31,26 @@ One neat trick is that you can also create custom one-off templates by adding th
 - `tag-news.hbs` - Custom template for `/tag/news/` archive
 - `author-ali.hbs` - Custom template for `/author/ali/` archive
 
+# Projects
+
+The projects index requires Ghost's `routes.yaml` to define these collections, while preserving any existing routes and taxonomies:
+
+```yaml
+collections:
+  /projects/:
+    permalink: /projects/{slug}/
+    template: projects
+    filter: tag:hash-project
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: tag:-hash-project
+```
+
+Tag each project post `#project` and choose the `Project` custom template for full detail pages. Blog posts related to a project should have the internal tag `#project-{projectSlug}`; the detail page lists matching blog posts and excludes project entries. The theme displays the first 100 matches at most, as limited by Ghost.
+
+Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
+
 
 # Development
 
