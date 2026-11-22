@@ -75,11 +75,55 @@ test("tile-only contact courses link directly to the configured redirect", () =>
     assert.match(html, /\/training\/gh-200-github-actions\/register\/">Contact/);
 });
 
+test("Phoenix course cards use the readable badge treatment wherever they appear", () => {
+    const render = h.compile('{{> "training-card"}}');
+    const phoenix = render(course({tags: [tag("#training-phoenix-project")]}), {data});
+    const github = render(course(), {data});
+    assert.match(phoenix, /training-card--phoenix/);
+    assert.doesNotMatch(github, /training-card--phoenix/);
+});
+
 test("the schedule appears only on the first catalogue page", () => {
     const render = h.compile(read("training.hbs"));
+    h.registerHelper("get", function (resource, options) {
+        return options.fn({posts: []});
+    });
     const context = {page: {content: "Upcoming classes"}, posts: [course()]};
     assert.match(render(context, {data}), /Upcoming classes/);
     assert.doesNotMatch(render(context, {data: {...data, paged: true}}), /Upcoming classes/);
+});
+
+test("the GitHub Star credential displays the official badge", () => {
+    const render = h.compile(read("training.hbs"));
+    h.registerHelper("get", function (resource, options) {
+        return options.fn({posts: []});
+    });
+    const html = render({page: {}}, {data});
+    assert.match(html, /href="https:\/\/stars\.github\.com\/profiles\/jessehouwing"[^]*?<img src="https:\/\/github\.blog\/wp-content\/uploads\/2020\/09\/github-stars-logo_Color\.png" alt=""/);
+});
+
+test("the catalogue fetches all courses before grouping them without pagination", () => {
+    const render = h.compile(read("training.hbs"));
+    const posts = Array.from({length: 26}, (_, index) => course({
+        title: `GitHub course ${index}`,
+    }));
+    posts.push(course({title: "Phoenix course", tags: [tag("#training-phoenix-project")]}));
+    h.registerHelper("get", function (resource, options) {
+        assert.equal(resource, "posts");
+        assert.equal(options.hash.filter, "tag:hash-training");
+        assert.equal(options.hash.limit, "100");
+        assert.equal(options.hash.include, "tags");
+        return options.fn({posts});
+    });
+    h.registerHelper("pagination", () => "unexpected pagination");
+    try {
+        const html = render({page: {}, posts: []}, {data});
+        assert.match(html, /GitHub course 25/);
+        assert.match(html, /Phoenix course/);
+        assert.doesNotMatch(html, /unexpected pagination/);
+    } finally {
+        h.registerHelper("pagination", () => "");
+    }
 });
 
 test("blog recommendations precede matching projects and courses; internal tags only", () => {
