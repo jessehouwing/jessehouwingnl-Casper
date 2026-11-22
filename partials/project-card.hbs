@@ -1,6 +1,6 @@
 <article class="project-card {{post_class}}">
     {{#if feature_image}}
-    <a class="post-card-image-link" href="{{url}}" aria-label="{{title}}">
+    <a class="post-card-image-link" href="{{#if custom_template}}{{url}}{{else}}{{@site.url}}/projects/{{slug}}/repo/{{/if}}" aria-label="{{title}}">
         <img class="post-card-image"
             srcset="{{img_url feature_image size="s"}} 300w,
                     {{img_url feature_image size="m"}} 600w,
@@ -15,10 +15,10 @@
 
     <div class="project-card-content">
         <div class="project-card-tags">{{tags visibility="public" separator=" "}}</div>
-        <h2 class="post-card-title"><a href="{{url}}">{{title}}</a></h2>
+        <h2 class="post-card-title"><a href="{{#if custom_template}}{{url}}{{else}}{{@site.url}}/projects/{{slug}}/repo/{{/if}}">{{title}}</a></h2>
         {{#if excerpt}}<div class="post-card-excerpt">{{excerpt}}</div>{{/if}}
         <div class="project-card-links">
-            <a href="{{url}}">View project</a>
+            {{#if custom_template}}<a href="{{url}}">View project</a>{{/if}}
             <a href="{{@site.url}}/projects/{{slug}}/repo/">View repository</a>
         </div>
     </div>

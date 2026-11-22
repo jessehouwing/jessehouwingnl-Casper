@@ -93,6 +93,31 @@
     </article>
 </main>
 
+{{^has tag="#project"}}
+{{#with this as |article|}}
+{{#get "posts" filter="tag:hash-project" include="tags" limit="100" as |projects|}}
+<aside class="project-related related-projects outer">
+    <div class="inner">
+        <h2>Related projects</h2>
+        <div class="project-related-feed">
+            {{#foreach projects as |project|}}
+                {{#foreach article.tags visibility="all"}}
+                    {{#match visibility "internal"}}
+                        {{#match slug "=" (concat "hash-project-" project.slug)}}
+                            {{> "project-card" project}}
+                        {{/match}}
+                    {{/match}}
+                {{/foreach}}
+            {{/foreach}}
+        </div>
+    </div>
+</aside>
+{{else}}
+<p class="outer">Related projects could not be loaded.</p>
+{{/get}}
+{{/with}}
+{{/has}}
+
 {{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
 {{#if @site.members_enabled}}
 {{#unless @member}}

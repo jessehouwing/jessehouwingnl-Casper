@@ -480,6 +480,7 @@ production stylesheet in assets/built/screen.css
 .gh-head-menu {
     display: flex;
     align-items: center;
+    min-width: 0;
     margin-top: 1px;
     font-weight: 500;
 }
@@ -488,6 +489,7 @@ production stylesheet in assets/built/screen.css
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 100%;
     gap: 32px;
     list-style: none;
     margin: 0;
@@ -518,6 +520,10 @@ production stylesheet in assets/built/screen.css
     font-size: inherit;
     background-color: transparent;
     text-transform: inherit;
+}
+
+.gh-head-menu .nav-more {
+    position: relative;
 }
 
 .gh-head-menu .nav-more-toggle svg {
@@ -619,7 +625,7 @@ production stylesheet in assets/built/screen.css
 }
 
 /* Responsive social icons - phone (6 per row, centered) */
-@media (max-width: 800px) {
+@media (max-width: 991px) {
     .gh-head-actions > .gh-social {
         grid-template-columns: repeat(6, auto);
         justify-content: center;
@@ -666,7 +672,7 @@ production stylesheet in assets/built/screen.css
     background: #fff;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 991px) {
     .gh-head-members {
         flex-direction: column-reverse;
         gap: 16px;
@@ -723,13 +729,13 @@ a.gh-head-button {
     margin-right: -4px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 991px) {
     .gh-head-actions .gh-search {
         display: none;
     }
 }
 
-@media (min-width: 801px) {
+@media (min-width: 992px) {
     .gh-head-brand .gh-search {
         display: none;
     }
@@ -791,7 +797,7 @@ a.gh-head-button {
 /* ---------------------------------------------------------- */
 /* IDs needed to ensure sufficient specificity */
 
-@media (max-width: 800px) {
+@media (max-width: 991px) {
     #gh-head {
         height: 64px;
     }
@@ -1040,6 +1046,10 @@ html.dark-mode .project-card {
 
 .project-related {
     margin-top: max(6vmin, 48px);
+}
+
+.related-projects:not(:has(.project-card)) {
+    display: none;
 }
 
 .project-related-feed .post-card {

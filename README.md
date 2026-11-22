@@ -48,9 +48,9 @@ collections:
     filter: tag:-hash-project
 ```
 
-Tag each project post `#project` and choose the `Project` custom template for full detail pages. Blog posts related to a project should have the internal tag `#project-{projectSlug}`; the detail page lists matching blog posts and excludes project entries. The theme displays the first 100 matches at most, as limited by Ghost.
+Tag each project post `#project` and choose the `Project` custom template for full detail pages. Blog posts related to a project should have the internal tag `#project-{projectSlug}`; the detail page lists matching blog posts, and blog posts list matching projects. Project entries are excluded from both related-content lists. Each list considers at most 100 results, as limited by Ghost.
 
-Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
+Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Project posts without a custom template are treated as tile-only: their cards link directly to the repository and omit the detail button. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
 
 
 # Development
