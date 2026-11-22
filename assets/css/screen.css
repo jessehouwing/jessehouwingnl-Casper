@@ -1072,21 +1072,9 @@ html.dark-mode .project-card {
 }
 
 .repository-link {
-    --repository-link-text: #15171a;
-    --repository-link-background: #fff;
-
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
-    border: 1px solid #8a939b;
-    border-radius: 4px;
-}
-
-.project-card-links a.repository-link,
-.project-repository a.repository-link {
-    color: var(--repository-link-text);
-    background: var(--repository-link-background);
 }
 
 .repository-link svg {
@@ -1095,16 +1083,8 @@ html.dark-mode .project-card {
     height: 18px;
 }
 
-html.dark-mode .repository-link {
-    --repository-link-text: #fff;
-    --repository-link-background: #000;
-}
-
-@media (prefers-color-scheme: dark) {
-    html.auto-color .repository-link {
-        --repository-link-text: #fff;
-        --repository-link-background: #000;
-    }
+.project-repository a.repository-link {
+    color: inherit;
 }
 
 .training-course .project-repository a {
