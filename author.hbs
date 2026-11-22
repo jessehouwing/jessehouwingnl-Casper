@@ -4,9 +4,11 @@
 <main id="site-main" class="site-main outer">
 <div class="inner posts">
 
+    {{#author}}
+    {{#get "posts" filter="authors:{{slug}}+tag:-hash-project" include="tags,authors" limit=@config.posts_per_page page=../pagination.page}}
     <div class="post-feed">
 
-        {{#author}}
+        {{#with ..}}
         <section class="post-card post-card-large">
 
             {{#if cover_image}}
@@ -59,7 +61,7 @@
             </div>
 
         </section>
-        {{/author}}
+        {{/with}}
 
         {{#foreach posts}}
             {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
@@ -68,7 +70,15 @@
 
     </div>
 
-    {{pagination}}
+    {{#match pagination.page ">" pagination.pages}}
+        <p>{{t "There are no posts on this page."}} <a href="{{page_url pagination.pages}}">{{t "View the last page of posts"}}</a>.</p>
+    {{else}}
+        {{pagination}}
+    {{/match}}
+    {{else}}
+        <p>{{t "Posts could not be loaded."}}</p>
+    {{/get}}
+    {{/author}}
     
 </div>
 </main>
