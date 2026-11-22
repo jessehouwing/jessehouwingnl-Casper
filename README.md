@@ -41,6 +41,7 @@ collections:
     permalink: /projects/{slug}/
     template: projects
     filter: tag:hash-project
+    order: featured desc, title asc, published_at desc
   /:
     permalink: /{slug}/
     template: index
