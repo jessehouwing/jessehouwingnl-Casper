@@ -11,6 +11,12 @@ for (const {width, dark} of cases) {
     frame.srcdoc = `<!doctype html><html ${dark ? 'class="dark-mode"' : ""}><head>
         <link rel="stylesheet" href="../assets/built/screen.css"></head><body>
         <div class="outer"><div class="inner">
+            <header class="article-header gh-canvas">
+                <div class="training-course-header">
+                    <figure class="training-course-badge"><img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Course certification badge"></figure>
+                    <h1 class="article-title">GH-200: GitHub Actions for advanced automation and CI/CD</h1>
+                </div>
+            </header>
             <nav class="training-navigation"><a>GitHub</a><a>Scrum</a><a>Azure</a><a>Phoenix Project</a></nav>
             <aside class="read-more-wrap related-posts"><h2>Related posts</h2><div class="read-more">
                 <article class="post-card">Post one</article><article class="post-card">Post two</article><article class="post-card">Post three</article>
@@ -30,15 +36,18 @@ for (const {width, dark} of cases) {
         const related = doc.querySelector(".related-posts");
         const projects = doc.querySelector(".related-projects");
         const training = doc.querySelector(".related-training");
+        const badge = doc.querySelector(".training-course-badge");
+        const badgeSize = badge.getBoundingClientRect().width;
         const columns = view.getComputedStyle(projects.querySelector(".project-related-feed")).gridTemplateColumns.split(" ").length;
         const expectedColumns = width > 991 ? 3 : width > 767 ? 2 : 1;
+        const expectedBadgeSize = width <= 767 ? 64 : 96;
         const background = view.getComputedStyle(related).backgroundColor;
         const expectedBackground = dark ? "rgb(41, 46, 51)" : "rgb(241, 244, 246)";
         const ok = doc.documentElement.scrollWidth <= width &&
             related.getBoundingClientRect().bottom < projects.getBoundingClientRect().top &&
             projects.getBoundingClientRect().bottom < training.getBoundingClientRect().top &&
-            columns === expectedColumns && background === expectedBackground;
-        results.push(`${width} ${dark ? "dark" : "light"}: ${ok ? "PASS" : "FAIL"} (columns=${columns}, background=${background}, scroll=${doc.documentElement.scrollWidth})`);
+            badgeSize === expectedBadgeSize && columns === expectedColumns && background === expectedBackground;
+        results.push(`${width} ${dark ? "dark" : "light"}: ${ok ? "PASS" : "FAIL"} (badge=${badgeSize}px, columns=${columns}, background=${background}, scroll=${doc.documentElement.scrollWidth})`);
         if (results.length === cases.length) {
             document.querySelector("#result").textContent = results.join(" | ");
         }

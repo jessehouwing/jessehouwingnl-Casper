@@ -7,6 +7,7 @@ const vm = require('node:vm');
 
 const root = path.join(__dirname, '..');
 const authorTemplate = fs.readFileSync(path.join(root, 'author.hbs'), 'utf8');
+const tagTemplate = fs.readFileSync(path.join(root, 'tag.hbs'), 'utf8');
 const infiniteScroll = fs.readFileSync(path.join(root, 'assets', 'js', 'infinite-scroll.js'), 'utf8');
 const Handlebars = createRequire(require.resolve('gscan/package.json'))('handlebars');
 
@@ -24,20 +25,27 @@ const articles = Array.from({length: 30}, (_, index) => ({
 }));
 const entries = [
     ...projects,
+    ...Array.from({length: 20}, (_, index) => ({
+        slug: `training-${index}`, title: `Training ${index}`, authors: ['jesse'], tags: ['hash-training']
+    })),
     ...articles,
     {slug: 'coauthored', title: 'Coauthored', authors: ['another', 'jesse'], tags: []},
     {slug: 'another-author', title: 'Another author', authors: ['another'], tags: []}
 ];
 
-function renderAuthor({page = 1, posts = entries, fail = false} = {}) {
+function renderArchive({page = 1, posts = entries, fail = false, tag = false} = {}) {
     const hbs = Handlebars.create();
-    const pageUrl = (number) => number === 1 ? '/author/jesse/' : `/author/jesse/page/${number}/`;
+    const base = tag ? '/tag/ghost/' : '/author/jesse/';
+    const pageUrl = (number) => number === 1 ? base : `${base}page/${number}/`;
 
     hbs.registerPartial('post-card', '<article class="post-card" data-slug="{{slug}}">{{title}}</article>');
     hbs.registerPartial('social-links', '');
     hbs.registerHelper('block', () => '');
     hbs.registerHelper('page_url', pageUrl);
     hbs.registerHelper('t', (text) => text);
+    hbs.registerHelper('plural', (count, options) => {
+        return count === 0 ? options.hash.empty : count === 1 ? options.hash.singular : `A collection of ${count} posts`;
+    });
     hbs.registerHelper('match', function (left, operator, right, options) {
         assert.equal(operator, '>');
         return left > right ? options.fn(this) : options.inverse(this);
@@ -66,6 +74,9 @@ function renderAuthor({page = 1, posts = entries, fail = false} = {}) {
             if (clause.startsWith('tag:-')) {
                 return !post.tags.includes(clause.slice('tag:-'.length));
             }
+            if (clause.startsWith('tag:')) {
+                return post.tags.includes(clause.slice('tag:'.length));
+            }
             throw new Error(`Unsupported filter clause: ${clause}`);
         }));
         const limit = Number(options.hash.limit || 15);
@@ -83,10 +94,14 @@ function renderAuthor({page = 1, posts = entries, fail = false} = {}) {
         return options.fn({posts: filtered.slice(start, start + limit), pagination}, {data: options.data});
     });
 
-    return hbs.compile(authorTemplate)(
-        {author: {slug: 'jesse', name: 'Jesse'}, pagination: {page}},
+    return hbs.compile(tag ? tagTemplate : authorTemplate)(
+        {author: {slug: 'jesse', name: 'Jesse'}, tag: {slug: 'ghost', name: 'Ghost'}, pagination: {page}},
         {data: {config: {posts_per_page: 25}}}
     );
+}
+
+function renderAuthor(options) {
+    return renderArchive(options);
 }
 
 function cards(html) {
@@ -121,7 +136,38 @@ test('author archive reports a failed post query', () => {
     assert.match(renderAuthor({fail: true}), /Posts could not be loaded/);
 });
 
-function setupInfiniteScroll({author, headNext, pageNext}) {
+test('tag archives count and paginate ordinary posts and projects, excluding training', () => {
+    const tagged = [
+        ...entries.map((post) => ({...post, tags: [...post.tags, 'ghost']})),
+        {slug: 'other-tag', title: 'Other tag', authors: ['jesse'], tags: []}
+    ];
+    const expected = tagged.filter((post) => post.tags.includes('ghost') && !post.tags.includes('hash-training'));
+    const first = renderArchive({tag: true, posts: tagged});
+    const second = renderArchive({tag: true, posts: tagged, page: 2});
+    const third = renderArchive({tag: true, posts: tagged, page: 3});
+
+    assert.match(first, /Ghost/);
+    assert.match(first, new RegExp(`A collection of ${expected.length} posts`));
+    assert.deepEqual([...cards(first), ...cards(second), ...cards(third)], expected.map((post) => post.slug));
+    assert.match(first, /class="older-posts" href="\/tag\/ghost\/page\/2\/"/);
+    assert.doesNotMatch(third, /class="older-posts"/);
+
+    const stale = renderArchive({tag: true, posts: tagged, page: 4});
+    assert.match(stale, /There are no posts on this page/);
+    assert.match(stale, /href="\/tag\/ghost\/page\/3\/"/);
+    assert.doesNotMatch(stale, /class="older-posts"/);
+});
+
+test('tag archives handle training-only results and query failure', () => {
+    const training = [{slug: 'course', title: 'Course', authors: ['jesse'], tags: ['ghost', 'hash-training']}];
+    const empty = renderArchive({tag: true, posts: training});
+    assert.match(empty, /A collection of 0 posts/);
+    assert.deepEqual(cards(empty), []);
+    assert.doesNotMatch(empty, /class="older-posts"/);
+    assert.match(renderArchive({tag: true, fail: true}), /Posts could not be loaded/);
+});
+
+function setupInfiniteScroll({author, tag, headNext, pageNext}) {
     const listeners = new Map();
     const frames = [];
     const requests = [];
@@ -156,7 +202,7 @@ function setupInfiniteScroll({author, headNext, pageNext}) {
 
     const document = {
         documentElement: {classList: {contains: () => false}, scrollHeight: 1000},
-        body: {classList: {contains: (name) => name === 'author-template' && author}},
+        body: {classList: {contains: (name) => (name === 'author-template' && author) || (name === 'tag-template' && tag)}},
         querySelector(selector) {
             if (selector === 'link[rel=next]') return headLink;
             if (selector === '.pagination .older-posts') return pageLink;
@@ -214,7 +260,16 @@ test('author infinite scroll follows the filtered next link on each page', () =>
     assert.equal(scroll.requests.length, 2);
 });
 
-test('non-author infinite scroll still follows Ghost head links', () => {
+test('tag infinite scroll follows filtered links and stops at the last page', () => {
+    const scroll = setupInfiniteScroll({tag: true, headNext: '/unfiltered-2', pageNext: '/filtered-2'});
+    scroll.flush();
+    assert.equal(scroll.requests[0].url, '/filtered-2');
+    scroll.requests[0].respond({head: '/unfiltered-3', pagination: null, articles: ['article-1']});
+    assert.deepEqual(scroll.feed.children, ['article-1']);
+    assert.equal(scroll.listeners.has('scroll'), false);
+});
+
+test('other infinite scroll still follows Ghost head links', () => {
     const scroll = setupInfiniteScroll({author: false, headNext: '/head-next', pageNext: '/other-next'});
 
     scroll.flush();

@@ -4,25 +4,24 @@
 <main id="site-main" class="site-main">
     <article class="article {{post_class}}">
         <header class="article-header gh-canvas">
-            <h1 class="article-title">{{title}}</h1>
+            <div class="training-course-header">
+                {{#if feature_image}}
+                <figure class="training-course-badge">
+                    <img
+                        srcset="{{img_url feature_image size="s"}} 300w,
+                                {{img_url feature_image size="m"}} 600w"
+                        sizes="(max-width: 480px) 64px, 96px"
+                        src="{{img_url feature_image size="m"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                        fetchpriority="high"
+                        loading="eager"
+                    />
+                </figure>
+                {{/if}}
+                <h1 class="article-title">{{title}}</h1>
+            </div>
             {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
             <p class="project-repository"><a href="{{@site.url}}/training/{{slug}}/register/">{{#has tag="#training-contact"}}Contact{{else}}Register{{/has}}</a></p>
-            {{#if feature_image}}
-            <figure class="article-image">
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(min-width: 1400px) 1400px, 92vw"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                    fetchpriority="high"
-                    loading="eager"
-                />
-                {{#if feature_image_caption}}<figcaption>{{feature_image_caption}}</figcaption>{{/if}}
-            </figure>
-            {{/if}}
         </header>
         <section class="gh-content gh-canvas">
             {{content}}

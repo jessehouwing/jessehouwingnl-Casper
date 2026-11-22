@@ -43,9 +43,10 @@ h.registerHelper("is", function (context, options) {
     return context === "paged" && options.data.paged ? options.fn(this) : options.inverse(this);
 });
 h.registerHelper("pagination", () => "");
-for (const name of ["post_class", "date", "authors", "reading_time", "t", "img_url", "comments"]) {
+for (const name of ["post_class", "date", "authors", "reading_time", "t", "comments"]) {
     h.registerHelper(name, () => "");
 }
+h.registerHelper("img_url", (url) => url || "");
 
 const tag = (name, slug = name.replace(/^#/, "hash-"), visibility = "internal") => ({name, slug, visibility});
 const course = (overrides = {}) => ({
@@ -147,5 +148,28 @@ test("course detail related articles exclude course and project entries", () => 
             blockParams: Handlebars.Utils.blockParams([results], [null]),
         });
     });
-    assert.match(render(course(), {data}), /A related article/);
+    const html = render(course({
+        feature_image: "https://example.test/course-badge.png",
+        feature_image_alt: "GitHub Actions certification badge",
+    }), {data});
+    assert.match(html, /A related article/);
+    assert.match(html, /<h1 class="article-title">GH-200 GitHub Actions<\/h1>/);
+    assert.match(html, /class="training-course-badge"/);
+    assert.match(html, /src="https:\/\/example\.test\/course-badge\.png"/);
+    assert.match(html, /alt="GitHub Actions certification badge"/);
+    assert.doesNotMatch(html, /class="article-image"/);
+});
+
+test("course details render without a feature-image badge", () => {
+    const render = h.compile(read("custom-training.hbs"));
+    h.registerHelper("get", function (resource, options) {
+        const results = [{title: "A related article"}];
+        return options.fn({posts: results}, {
+            data: options.data,
+            blockParams: Handlebars.Utils.blockParams([results], [null]),
+        });
+    });
+    const html = render(course({feature_image: null}), {data});
+    assert.match(html, /<h1 class="article-title">GH-200 GitHub Actions<\/h1>/);
+    assert.doesNotMatch(html, /training-course-badge|class="article-image"/);
 });
