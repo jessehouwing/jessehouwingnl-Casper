@@ -38,7 +38,7 @@
     </article>
 </main>
 
-{{#get "posts" filter="tag:hash-project-{{slug}}+tag:-hash-project" include="tags,authors" limit="100" as |related_posts|}}
+{{#get "posts" filter="tag:hash-project-{{slug}}+tag:-hash-project+tag:-hash-training" include="tags,authors" limit="100" as |related_posts|}}
     {{#if related_posts}}
     <aside class="project-related outer">
         <div class="inner">

@@ -94,7 +94,26 @@
     </article>
 </main>
 
+{{#if @custom.show_recent_posts_footer}}
+{{#with this as |article|}}
+    {{#if primary_tag}}
+        {{#get "posts" filter="tag:{{primary_tag.slug}}+id:-{{id}}+tag:-hash-project+tag:-hash-training" include="tags,authors" limit="3" as |related_posts|}}
+            {{#if related_posts}}
+                {{> "related-posts" posts=related_posts heading="Related posts"}}
+            {{else}}
+                {{> "recent-posts" article_id=article.id}}
+            {{/if}}
+        {{else}}
+            <p class="outer">Related posts could not be loaded.</p>
+        {{/get}}
+    {{else}}
+        {{> "recent-posts" article_id=article.id}}
+    {{/if}}
+{{/with}}
+{{/if}}
+
 {{^has tag="#project"}}
+{{^has tag="#training"}}
 {{#with this as |article|}}
 {{#get "posts" filter="tag:hash-project" include="tags" limit="100" as |projects|}}
 <aside class="project-related related-projects outer">
@@ -118,6 +137,34 @@
 {{/get}}
 {{/with}}
 {{/has}}
+{{/has}}
+
+{{^has tag="#project"}}
+{{^has tag="#training"}}
+{{#with this as |article|}}
+{{#get "posts" filter="tag:hash-training" include="tags" limit="100" as |courses|}}
+<aside class="project-related related-training outer">
+    <div class="inner">
+        <h2>Related training</h2>
+        <div class="project-related-feed">
+            {{#foreach courses as |course|}}
+                {{#foreach article.tags visibility="all"}}
+                    {{#match visibility "internal"}}
+                        {{#match slug "=" (concat "hash-training-" course.slug)}}
+                            {{> "training-card" course}}
+                        {{/match}}
+                    {{/match}}
+                {{/foreach}}
+            {{/foreach}}
+        </div>
+    </div>
+</aside>
+{{else}}
+<p class="outer">Related training could not be loaded.</p>
+{{/get}}
+{{/with}}
+{{/has}}
+{{/has}}
 
 {{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
 {{#if @site.members_enabled}}
@@ -136,23 +183,6 @@
 {{/if}}
 {{/unless}}
 {{/unless}}
-{{/if}}
-
-{{!-- Read more links, just above the footer --}}
-{{#if @custom.show_recent_posts_footer}}
-{{#get "posts" filter="id:-{{id}}+tag:-hash-project" limit="3" as |more_posts|}}
-
-{{#if more_posts}}
-<aside class="read-more-wrap outer">
-    <div class="read-more inner">
-        {{#foreach more_posts}}
-        {{> "post-card"}}
-        {{/foreach}}
-    </div>
-</aside>
-{{/if}}
-
-{{/get}}
 {{/if}}
 
 {{/post}}

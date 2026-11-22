@@ -1,0 +1,7 @@
+{{#get "posts" filter="id:-{{article_id}}+tag:-hash-project+tag:-hash-training" include="tags,authors" limit="3" as |recent_posts|}}
+    {{#if recent_posts}}
+        {{> "related-posts" posts=recent_posts heading="Recent posts"}}
+    {{/if}}
+{{else}}
+    <p class="outer">Recent posts could not be loaded.</p>
+{{/get}}
