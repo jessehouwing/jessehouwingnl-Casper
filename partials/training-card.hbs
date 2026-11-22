@@ -1,4 +1,4 @@
-<article class="project-card training-card {{#has tag="#training-phoenix-project"}}training-card--phoenix {{/has}}{{post_class}}">
+<article class="project-card training-card {{#has tag="#training-phoenix-project"}}training-card--phoenix {{/has}}{{#match slug "psm-pspo-professional-scrum-master-and-product-owner"}}training-card--round {{/match}}{{post_class}}">
     {{#if feature_image}}
     <a class="post-card-image-link" href="{{#if custom_template}}{{url}}{{else}}{{@site.url}}/training/{{slug}}/register/{{/if}}" aria-label="{{title}}">
         <img class="post-card-image"

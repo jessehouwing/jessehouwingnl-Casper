@@ -1071,6 +1071,10 @@ html.dark-mode .project-card {
     font-weight: 600;
 }
 
+.training-course .project-repository a {
+    color: inherit;
+}
+
 .training-course-header {
     display: flex;
     gap: 24px;
@@ -1083,17 +1087,26 @@ html.dark-mode .project-card {
 }
 
 .training-course-badge {
-    flex: 0 0 96px;
-    width: 96px;
+    flex: 0 0 auto;
+    max-width: min(35%, 240px);
     height: 96px;
     margin: 0;
 }
 
+.training-course-badge--phoenix {
+    background: #fff;
+}
+
 .training-course-badge img {
     display: block;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.training-course-badge--round img {
+    clip-path: circle(49%);
 }
 
 .project-related {
@@ -1194,12 +1207,22 @@ html.dark-mode .related-posts {
 }
 
 .project-card.training-card .post-card-image {
+    padding: 16px;
     background: var(--project-card-background);
     object-fit: contain;
 }
 
 .project-card.training-card--phoenix .post-card-image {
     background: #fff;
+}
+
+.project-card.training-card--round .post-card-image {
+    inset: 16px auto auto 50%;
+    width: auto;
+    height: calc(100% - 32px);
+    padding: 0;
+    clip-path: circle(49%);
+    transform: translateX(-50%);
 }
 
 .project-related-feed .post-card {
@@ -1225,8 +1248,7 @@ html.dark-mode .related-posts {
     }
 
     .training-course-badge {
-        flex-basis: 64px;
-        width: 64px;
+        max-width: min(35%, 160px);
         height: 64px;
     }
 }

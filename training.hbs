@@ -21,7 +21,7 @@
         {{/page}}
         {{/is}}
 
-        {{#get "posts" filter="tag:hash-training" limit="100" include="tags"}}
+        {{#get "posts" filter="tag:hash-training" limit="100" include="tags" order="featured desc, title asc"}}
         <section class="training-section" id="github">
             <h2>GitHub</h2>
             <div class="training-credentials">
@@ -29,6 +29,7 @@
                     <img src="https://github.blog/wp-content/uploads/2020/09/github-stars-logo_Color.png" alt="" loading="lazy">
                     GitHub Star
                 </a>
+                {{> "mvp-credential"}}
                 {{> "mct-credential"}}
             </div>
             {{> "training-feed" category="#training-github"}}
@@ -48,10 +49,7 @@
         <section class="training-section" id="azure">
             <h2>Azure</h2>
             <div class="training-credentials">
-                <a href="https://www.credly.com/badges/4d920fc9-6acd-4329-883a-fbd5313144d4">
-                    <img src="https://images.credly.com/images/c4da2c74-dd74-4a97-a433-d8c21f06ca65/blob" alt="" loading="lazy">
-                    Microsoft MVP
-                </a>
+                {{> "mvp-credential"}}
                 {{> "mct-credential"}}
             </div>
             {{> "training-feed" category="#training-azure"}}

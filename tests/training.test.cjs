@@ -14,6 +14,7 @@ for (const name of ["training-card", "training-feed", "related-posts", "recent-p
 h.registerPartial("post-card", '<div class="post-card">{{title}}</div>');
 h.registerPartial("project-card", '<div class="project-card">{{title}}</div>');
 h.registerPartial("mct-credential", read("partials/mct-credential.hbs"));
+h.registerPartial("mvp-credential", read("partials/mvp-credential.hbs"));
 h.registerPartial("icons/fire", "");
 h.registerPartial("icons/avatar", "");
 h.registerHelper("foreach", function (items, options) {
@@ -83,6 +84,14 @@ test("Phoenix course cards use the readable badge treatment wherever they appear
     assert.doesNotMatch(github, /training-card--phoenix/);
 });
 
+test("the affected Scrum badge receives the circular edge treatment", () => {
+    const render = h.compile('{{> "training-card"}}');
+    const affected = render(course({slug: "psm-pspo-professional-scrum-master-and-product-owner"}), {data});
+    const other = render(course(), {data});
+    assert.match(affected, /training-card--round/);
+    assert.doesNotMatch(other, /training-card--round/);
+});
+
 test("the schedule appears only on the first catalogue page", () => {
     const render = h.compile(read("training.hbs"));
     h.registerHelper("get", function (resource, options) {
@@ -100,6 +109,8 @@ test("the GitHub Star credential displays the official badge", () => {
     });
     const html = render({page: {}}, {data});
     assert.match(html, /href="https:\/\/stars\.github\.com\/profiles\/jessehouwing"[^]*?<img src="https:\/\/github\.blog\/wp-content\/uploads\/2020\/09\/github-stars-logo_Color\.png" alt=""/);
+    const github = html.match(/<section class="training-section" id="github">[^]*?<\/section>/)[0];
+    assert.match(github, /Microsoft MVP/);
 });
 
 test("the catalogue fetches all courses before grouping them without pagination", () => {
@@ -113,6 +124,7 @@ test("the catalogue fetches all courses before grouping them without pagination"
         assert.equal(options.hash.filter, "tag:hash-training");
         assert.equal(options.hash.limit, "100");
         assert.equal(options.hash.include, "tags");
+        assert.equal(options.hash.order, "featured desc, title asc");
         return options.fn({posts});
     });
     h.registerHelper("pagination", () => "unexpected pagination");
@@ -124,6 +136,27 @@ test("the catalogue fetches all courses before grouping them without pagination"
     } finally {
         h.registerHelper("pagination", () => "");
     }
+});
+
+test("category feeds preserve featured-first alphabetical query order", () => {
+    const render = h.compile(read("training.hbs"));
+    const posts = [
+        course({title: "Featured Alpha", featured: true}),
+        course({title: "Featured Scrum", featured: true, tags: [tag("#training-scrum")]}),
+        course({title: "Featured Zulu", featured: true}),
+        course({title: "Ordinary Alpha", featured: false}),
+        course({title: "Ordinary Scrum", featured: false, tags: [tag("#training-scrum")]}),
+        course({title: "Ordinary Zulu", featured: false}),
+    ];
+    h.registerHelper("get", function (resource, options) {
+        assert.equal(options.hash.order, "featured desc, title asc");
+        return options.fn({posts});
+    });
+    const html = render({page: {}}, {data});
+    const github = html.match(/<section class="training-section" id="github">[^]*?<\/section>/)[0];
+    const titles = [...github.matchAll(/<h3 class="post-card-title"><a[^>]*>([^<]+)<\/a>/g)].map(match => match[1]);
+    assert.deepEqual(titles, ["Featured Alpha", "Featured Zulu", "Ordinary Alpha", "Ordinary Zulu"]);
+    assert.doesNotMatch(github, /Featured Scrum|Ordinary Scrum/);
 });
 
 test("blog recommendations precede matching projects and courses; internal tags only", () => {
@@ -216,4 +249,20 @@ test("course details render without a feature-image badge", () => {
     const html = render(course({feature_image: null}), {data});
     assert.match(html, /<h1 class="article-title">GH-200 GitHub Actions<\/h1>/);
     assert.doesNotMatch(html, /training-course-badge|class="article-image"/);
+});
+
+test("Phoenix course details give transparent badges a readable backing", () => {
+    const render = h.compile(read("custom-training.hbs"));
+    h.registerHelper("get", function (resource, options) {
+        const posts = [];
+        return options.fn({posts}, {
+            data: options.data,
+            blockParams: Handlebars.Utils.blockParams([posts], [null]),
+        });
+    });
+    const html = render(course({
+        feature_image: "https://example.test/phoenix.png",
+        tags: [tag("#training-phoenix-project")],
+    }), {data});
+    assert.match(html, /training-course-badge--phoenix/);
 });
