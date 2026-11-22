@@ -21,10 +21,14 @@
         {{/page}}
         {{/is}}
 
+        {{#get "posts" filter="tag:hash-training" limit="100" include="tags"}}
         <section class="training-section" id="github">
             <h2>GitHub</h2>
             <div class="training-credentials">
-                <a href="https://stars.github.com/profiles/jessehouwing">GitHub Star</a>
+                <a href="https://stars.github.com/profiles/jessehouwing">
+                    <img src="https://github.blog/wp-content/uploads/2020/09/github-stars-logo_Color.png" alt="" loading="lazy">
+                    GitHub Star
+                </a>
                 {{> "mct-credential"}}
             </div>
             {{> "training-feed" category="#training-github"}}
@@ -57,6 +61,6 @@
             <h2>Phoenix Project</h2>
             {{> "training-feed" category="#training-phoenix-project"}}
         </section>
-        {{pagination}}
+        {{/get}}
     </div>
 </main>
