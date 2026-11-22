@@ -48,7 +48,7 @@ collections:
     filter: tag:-hash-project
 ```
 
-Tag each project post `#project` and choose the `Project` custom template for full detail pages. Blog posts related to a project should have the internal tag `#project-{projectSlug}`; the detail page lists matching blog posts, and blog posts list matching projects. Project entries are excluded from both related-content lists. Each list considers at most 100 results, as limited by Ghost.
+Tag each project post `#project` and choose the `Project` custom template for full detail pages. Blog posts related to a project should have the internal tag `#project-{projectSlug}`; the detail page lists matching blog posts, and blog posts list matching projects. Project entries are excluded from author pages and both related-content lists. Each related-content list considers at most 100 results, as limited by Ghost.
 
 Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Project posts without a custom template are treated as tile-only: their cards link directly to the repository and omit the detail button. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
 
@@ -85,6 +85,16 @@ Give each related blog post the internal tag `#training-{courseSlug}`, e.g. `#tr
 The collection's `data: page.training` loads the existing Ghost page with slug `training` as the editable upcoming-classes area at the top of the first catalogue page. Replace its old content with a heading and a schedule table or list before switching routes. The Scrum.org schedule workflow in `jessehouwing/jessehouwing` can update a dedicated Ghost HTML card in that page's Lexical content, bounded by `<!-- SCRUM-CLASS-LIST:START -->` and `<!-- SCRUM-CLASS-LIST:END -->`; each entry should include the course title, dates, language, location and its actual registration URL. The workflow must preserve the rest of the page and verify that Ghost retains the markers when writing and reading the card. Do not populate static dates in the theme, and remove expired entries during synchronization. Course detail content may separately include upcoming classes where available.
 
 Credential badge links are maintained in `training.hbs` and `partials/mct-credential.hbs`; replace the dated MVP and MCT badge links and images when renewed.
+
+# Social links
+
+The header and footer use the publication accounts configured in Ghost Admin's
+Social accounts settings. Author pages use each author's accounts from their
+staff profile, not the publication accounts. Only populated accounts are shown.
+Existing URLs must be entered in Ghost Admin; the theme does not migrate settings.
+GitHub, Sponsors, Stack Overflow, MVP, GitHub Stars, phone, and RSS links remain
+unchanged because they are not supported by Ghost's social-account helper.
+Rendering these accounts requires a Ghost version with the `social_accounts` helper.
 
 # Development
 

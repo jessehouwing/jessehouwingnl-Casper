@@ -70,16 +70,10 @@
                     <div class="gh-social">
                         <a class="gh-social-link gh-social-ghsponsor" href="https://github.com/sponsors/jessehouwing/" title="GitHub Sponsors" target="_blank" rel="noopener me">{{> "icons/heart"}}</a>
                         <a class="gh-social-link gh-social-github" href="https://github.com/jessehouwing/" title="Github" target="_blank" rel="noopener me">{{> "icons/github"}}</a>
-                        <a class="gh-social-link gh-social-bsky" href="https://bsky.app/profile/jessehouwing.net" title="Bluesky" target="_blank" rel="noopener me">{{> "icons/bsky"}}</a>                        
-                        <a class="gh-social-link gh-social-mastadon" href="https://hachyderm.io/@jessehouwing" title="Mastadon" target="_blank" rel="noopener me">{{> "icons/mastadon"}}</a>
-                        <a class="gh-social-link gh-social-facebook" href="{{social_url type="facebook" url=@site.facebook}}" title="Facebook" target="_blank" rel="noopener me">{{> "icons/facebook"}}</a>
-                        <a class="gh-social-link gh-social-instagram" href="https://www.instagram.com/jesse.houwing/" title="Instagram" target="_blank" rel="noopener me">{{> "icons/instagram"}}</a>
-                        <a class="gh-social-link gh-social-threads" href="https://www.threads.net/@jesse.houwing" title="Threads" target="_blank" rel="noopener me">{{> "icons/threads"}}</a>
-                        <a class="gh-social-link gh-social-linkedin" href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener me">{{> "icons/linkedin"}}</a>
+                        {{> "social-links" source=@site link_class="gh-social-link"}}
                         <a class="gh-social-link gh-social-stackoverflow" href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener me">{{> "icons/stackoverflow"}}</a>
                         <a class="gh-social-link gh-social-mvp" href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" title="Microsoft MVP Profile" target="_blank" rel="noopener me">{{> "icons/mvp"}}</a>
                         <a class="gh-social-link gh-social-githubstars" href="https://stars.github.com/profiles/jessehouwing" title="GitHub Stars Profile" target="_blank" rel="noopener me">{{> "icons/githubstars"}}</a>
-                        <a class="gh-social-link gh-social-x" href="{{social_url type="twitter" url=@site.twitter}}" title="X" target="_blank" rel="noopener me">{{> "icons/twitter"}}</a>
                         <a class="gh-social-link phone-button" href="tel:+31641813338" title="Call" target="_blank" rel="noopener me">{{> "icons/phone"}}</a>
                         <a class="gh-social-link rss-button" href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener me">{{> "icons/rss"}}</a>
                     </div>
@@ -101,14 +95,8 @@
                 {{navigation type="secondary"}}
             </nav>
             <div>
-                {{#if @site.facebook}}<a href="{{social_url type="facebook" url=@site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>{{/if}}
-                {{#if @site.twitter}}<a href="{{social_url type="twitter" url=@site.twitter}}" title="X" target="_blank" rel="noopener">X</a>{{/if}}
-                <a href="https://www.linkedin.com/in/jessehouwing/" title="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+                {{> "social-links" source=@site text=true}}
                 <a href="https://github.com/jessehouwing/" title="GitHub" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://bsky.app/profile/jessehouwing.net" title="Bluesky" target="_blank" rel="noopener">Bluesky</a>
-                <a href="https://hachyderm.io/@jessehouwing" title="Mastodon" target="_blank" rel="noopener">Mastodon</a>
-                <a href="https://www.instagram.com/jesse.houwing/" title="Instagram" target="_blank" rel="noopener">Instagram</a>
-                <a href="https://www.threads.net/@jesse.houwing" title="Threads" target="_blank" rel="noopener">Threads</a>
                 <a href="https://stackoverflow.com/users/736079/jessehouwing" title="StackOverflow" target="_blank" rel="noopener">StackOverflow</a>
                 <a href="https://mvp.microsoft.com/en-us/PublicProfile/5001511?fullName=Jesse%20Houwing" title="Microsoft MVP Profile" target="_blank" rel="noopener">MVP</a>
                 <a href="https://stars.github.com/profiles/jessehouwing" title="GitHub Stars Profile" target="_blank" rel="noopener">GitHub Star</a>
