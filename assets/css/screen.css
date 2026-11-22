@@ -496,13 +496,27 @@ production stylesheet in assets/built/screen.css
     padding: 0;
 }
 
+.nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    vertical-align: middle;
+}
+
+.nav-icon {
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
 .gh-head-menu .nav li {
     margin: 0;
     padding: 0;
 }
 
 .gh-head-menu .nav a {
-    display: inline-block;
     line-height: 1.7;
     color: inherit;
 }
@@ -745,6 +759,18 @@ a.gh-head-button {
 /* Mobile Menu Trigger
 /* ---------------------------------------------------------- */
 
+html.gh-navigation-open {
+    overflow: hidden;
+}
+
+.gh-navigation-open body {
+    position: fixed;
+    top: var(--gh-navigation-scroll-top);
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
 .gh-burger {
     position: relative;
     display: none;
@@ -879,7 +905,8 @@ a.gh-head-button {
         inset: 0;
         z-index: 3999999;
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -1208,6 +1235,7 @@ html.dark-mode .project-card {
     font-size: 2.6rem;
     font-weight: 800;
     line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
 .post-card-content-link:hover .post-card-title {
@@ -1817,7 +1845,8 @@ except for when immediately preceeded by a heading */
 }
 
 .kg-image[width][height],
-.kg-gallery-image {
+.kg-gallery-image,
+.gh-feature-image {
     cursor: pointer;
 }
 

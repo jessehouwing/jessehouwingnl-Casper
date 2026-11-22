@@ -53,6 +53,16 @@ Tag each project post `#project` and choose the `Project` custom template for fu
 Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Project posts without a custom template are treated as tile-only: their cards link directly to the repository and omit the detail button. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
 
 
+# Social links
+
+The header and footer use the publication accounts configured in Ghost Admin's
+Social accounts settings. Author pages use each author's accounts from their
+staff profile, not the publication accounts. Only populated accounts are shown.
+Existing URLs must be entered in Ghost Admin; the theme does not migrate settings.
+GitHub, Sponsors, Stack Overflow, MVP, GitHub Stars, phone, and RSS links remain
+unchanged because they are not supported by Ghost's social-account helper.
+Rendering these accounts requires a Ghost version with the `social_accounts` helper.
+
 # Development
 
 Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:

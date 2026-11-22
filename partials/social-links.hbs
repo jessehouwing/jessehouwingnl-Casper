@@ -1,0 +1,15 @@
+{{#social_accounts source}}
+<a class="{{../link_class}} gh-social-{{type}}" href="{{href}}" title="{{name}}" aria-label="{{name}}" target="_blank" rel="noopener me">
+    {{#if ../text}}
+        {{name}}
+    {{else}}
+        {{#match type "x"}}
+            {{> "icons/twitter"}}
+        {{else}}
+            {{#> (concat "icons/" type)}}
+                <span>{{name}}</span>
+            {{/undefined}}
+        {{/match}}
+    {{/if}}
+</a>
+{{/social_accounts}}

@@ -35,7 +35,7 @@
                 {{/if}}
 
                 <header class="post-card-header">
-                    <h2 class="post-card-title">{{name}}</h2>
+                    <h1 class="post-card-title">{{name}}</h1>
                 </header>
 
                 {{#if bio}}
@@ -47,6 +47,10 @@
                     <div class="author-profile-location">{{location}}</div>
                 {{/if}}
                 <div class="author-profile-meta">
+                    {{#if website}}
+                        <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener me">{{website}}</a>
+                    {{/if}}
+                    {{> "social-links" source=this link_class="author-profile-social-link"}}
                     {{{block "links"}}}
                 </div>
             </footer>
