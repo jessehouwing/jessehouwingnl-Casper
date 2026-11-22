@@ -14,9 +14,7 @@
     {{/if}}
 
     <div class="project-card-content">
-        {{#primary_tag}}
-        <div class="post-card-tags"><span class="post-card-primary-tag">{{name}}</span></div>
-        {{/primary_tag}}
+        <div class="project-card-tags">{{tags visibility="public" separator=" "}}</div>
         <h2 class="post-card-title"><a href="{{url}}">{{title}}</a></h2>
         {{#if excerpt}}<div class="post-card-excerpt">{{excerpt}}</div>{{/if}}
         <div class="project-card-links">

@@ -942,25 +942,95 @@ a.gh-head-button {
 }
 
 .project-card {
+    --project-card-background: #fff;
+    --project-card-text: #15171a;
+    --project-card-border: #8a939b;
+
+    display: flex;
+    flex-direction: column;
     min-width: 0;
+    overflow: hidden;
+    color: var(--project-card-text);
+    background: var(--project-card-background);
+    border: 1px solid var(--project-card-border);
+    border-radius: 8px;
     word-break: break-word;
 }
 
+.project-card .post-card-image-link {
+    margin-bottom: 0;
+}
+
 .project-card-content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 24px;
 }
 
-.project-card-content .post-card-tags {
-    margin-bottom: 0;
+.project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.project-card-tags:empty {
+    display: none;
+}
+
+.project-card :is(.project-card-tags a, .post-card-title a, .project-card-links a) {
+    color: inherit;
+}
+
+.project-card-tags a {
+    padding: 2px 8px;
+    border: 1px solid var(--project-card-border);
+    border-radius: 4px;
+}
+
+.project-card .post-card-excerpt {
+    margin-top: 0;
 }
 
 .project-card-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 20px;
+    gap: 12px;
+    margin-top: auto;
     font-weight: 600;
+}
+
+.project-card-links a {
+    padding: 8px 12px;
+    border: 1px solid var(--project-card-border);
+    border-radius: 4px;
+}
+
+.project-card :is(.project-card-tags a, .post-card-title a, .project-card-links a):hover {
+    text-decoration: underline;
+}
+
+.project-card :is(.project-card-tags a, .post-card-title a, .project-card-links a):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+html.dark-mode .project-card {
+    --project-card-background: #202428;
+    --project-card-text: #f4f4f4;
+    --project-card-border: #89949e;
+}
+
+@media (prefers-color-scheme: dark) {
+    html.auto-color .project-card {
+        --project-card-background: #202428;
+        --project-card-text: #f4f4f4;
+        --project-card-border: #89949e;
+    }
 }
 
 .project-repository {
