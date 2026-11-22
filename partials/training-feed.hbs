@@ -1,0 +1,8 @@
+<div class="project-feed training-feed">
+    {{#foreach posts}}
+        {{#has tag=../category}}
+            {{> "training-card"}}
+        {{/has}}
+    {{/foreach}}
+</div>
+<p class="training-empty">No courses in this category on this page.</p>

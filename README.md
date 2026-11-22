@@ -52,6 +52,39 @@ Tag each project post `#project` and choose the `Project` custom template for fu
 
 Each card links to `/projects/{slug}/repo/`, which must be configured in Ghost's redirects to point to that project's repository. Project posts without a custom template are treated as tile-only: their cards link directly to the repository and omit the detail button. Tile-only projects also need a redirect from `/projects/{slug}/` to their repository. The theme alone does not configure routes or redirects; they must be in place before publishing the project posts.
 
+# Training
+
+The theme does not publish or migrate Ghost content. Before enabling the catalogue, merge the following into the site's existing `routes.yaml`, preserving the other routes and taxonomies. The filters are mutually exclusive: a course must not also have `#project`.
+
+```yaml
+collections:
+  /training/:
+    permalink: /training/{slug}/
+    template: training
+    filter: tag:hash-training
+    order: title asc
+    data: page.training
+    rss: false
+  /projects/:
+    permalink: /projects/{slug}/
+    template: projects
+    filter: tag:hash-project+tag:-hash-training
+    order: featured desc, title asc, published_at desc
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: tag:-hash-project+tag:-hash-training
+```
+
+Create a published post for each course, tagged `#training` and exactly one of `#training-github`, `#training-scrum`, `#training-azure`, or `#training-phoenix-project`. The collection paginates normally; category sections show the courses on the current page. Use a code **and** descriptive title in coded-course slugs, for example `gh-200-github-actions`, and select the `Training` custom template for a course with a detail page. Ghost supplies its canonical URL and SEO metadata. The agreed catalogue includes GitHub GH-XXX classes and Microsoft Skills Assessments for GitHub, Scrum.org classes, AZ-900, AI-901, AZ-400, AZ-401, and the GamingWorks Phoenix Project game. Create only entries with confirmed titles and descriptions; this theme does not invent the missing course catalogue.
+
+Every course needs an explicit Ghost redirect from `/training/{slug}/register/` to its confirmed Scrum.org or Xebia registration page, or to the appropriate contact destination when there is no public registration page. Add `#training-contact` for the latter so the link says **Contact**. Until the destination is known, do not publish that entry: the theme cannot determine an external destination from a Ghost post. For a tile-only course leave its custom template unset and also redirect `/training/{slug}/` to the same destination; its card omits the detail link. Configure redirects before publishing so neither registration links nor tile-only URLs lead to missing pages. Redirect existing course URLs, including old AI-900 URLs, to their corresponding new course URL; keep the code and title in the new slug.
+
+Give each related blog post the internal tag `#training-{courseSlug}`, e.g. `#training-gh-200-github-actions`. Both the course detail and ordinary blog post then show the corresponding related content. Project and training entries are excluded from article recommendations. Related queries are limited to 100 courses or articles, as in the projects implementation.
+
+The collection's `data: page.training` loads the existing Ghost page with slug `training` as the editable upcoming-classes area at the top of the first catalogue page. Replace its old content with a heading and a schedule table or list before switching routes. The Scrum.org schedule workflow in `jessehouwing/jessehouwing` can update a dedicated Ghost HTML card in that page's Lexical content, bounded by `<!-- SCRUM-CLASS-LIST:START -->` and `<!-- SCRUM-CLASS-LIST:END -->`; each entry should include the course title, dates, language, location and its actual registration URL. The workflow must preserve the rest of the page and verify that Ghost retains the markers when writing and reading the card. Do not populate static dates in the theme, and remove expired entries during synchronization. Course detail content may separately include upcoming classes where available.
+
+Credential badge links are maintained in `training.hbs` and `partials/mct-credential.hbs`; replace the dated MVP and MCT badge links and images when renewed.
 
 # Development
 
