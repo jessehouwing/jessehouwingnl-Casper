@@ -1,103 +1,89 @@
 (function () {
-    const mediaQuery = window.matchMedia('(max-width: 800px)');
-
+    const mediaQuery = window.matchMedia('(max-width: 991px)');
     const head = document.querySelector('.gh-head');
-    const menu = head.querySelector('.gh-head-menu');
-    const nav = menu.querySelector('.nav');
+    const menu = head && head.querySelector('.gh-head-menu');
+    const nav = menu && menu.querySelector('.nav');
     if (!nav) return;
 
-    const logo = document.querySelector('.gh-head-logo');
-    const navHTML = nav.innerHTML;
+    const items = Array.from(nav.children);
+    let toggle;
+    let frame;
 
-    if (mediaQuery.matches) {
-        const items = nav.querySelectorAll('li');
-        items.forEach(function (item, index) {
-            item.style.transitionDelay = 0.03 * (index + 1) + 's';
+    items.forEach(function (item, index) {
+        item.style.transitionDelay = 0.03 * (index + 1) + 's';
+    });
+
+    function closeDropdown() {
+        document.body.classList.remove('is-dropdown-open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function hasWrapped() {
+        const children = Array.from(nav.children);
+        if (children.length < 2) return false;
+        const first = children[0].getBoundingClientRect();
+        const firstCenter = first.top + first.height / 2;
+        return children.some(function (child) {
+            const rect = child.getBoundingClientRect();
+            return Math.abs(rect.top + rect.height / 2 - firstCenter) > 2;
         });
     }
 
-    var windowClickListener;
-    const makeDropdown = function () {
-        if (mediaQuery.matches) return;
-        const submenuItems = [];
+    function makeDropdown() {
+        closeDropdown();
+        toggle = null;
+        nav.replaceChildren(...items);
+        document.body.classList.remove('is-dropdown-mega');
 
-        // Read all dimensions first (single layout calculation)
-        const menuWidth = menu.offsetWidth;
-        const items = Array.from(nav.children);
-        const itemWidths = items.map(function(item) {
-            return item.offsetWidth;
-        });
-        
-        // Calculate which items need to move (no DOM changes yet)
-        const availableWidth = menuWidth - 64;
-        let totalWidth = 0;
-        let overflowIndex = -1;
-        
-        for (let i = 0; i < itemWidths.length; i++) {
-            totalWidth += itemWidths[i];
-            if (totalWidth > availableWidth && overflowIndex === -1) {
-                overflowIndex = i;
+        if (!mediaQuery.matches && hasWrapped()) {
+            const more = document.createElement('li');
+            more.className = 'nav-more';
+            toggle = document.createElement('button');
+            toggle.className = 'nav-more-toggle';
+            toggle.type = 'button';
+            toggle.setAttribute('aria-label', 'More');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
+
+            const dropdown = document.createElement('ul');
+            dropdown.className = 'gh-dropdown';
+            more.append(toggle, dropdown);
+            nav.appendChild(more);
+
+            while (hasWrapped() && nav.children.length > 1) {
+                dropdown.prepend(more.previousElementSibling);
             }
-        }
-        
-        // Now batch all DOM changes
-        if (overflowIndex !== -1) {
-            for (let i = items.length - 1; i >= overflowIndex; i--) {
-                submenuItems.unshift(items[i]);
-                items[i].remove();
+
+            if (dropdown.children.length >= 10) {
+                document.body.classList.add('is-dropdown-mega');
+                dropdown.style.gridTemplateRows = 'repeat(' + Math.ceil(dropdown.children.length / 2) + ', 1fr)';
             }
+
+            toggle.addEventListener('click', function () {
+                const isOpen = document.body.classList.toggle('is-dropdown-open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
         }
-
-        if (!submenuItems.length) {
-            document.body.classList.add('is-dropdown-loaded');
-            return;
-        }
-
-        const toggle = document.createElement('button');
-        toggle.setAttribute('class', 'nav-more-toggle');
-        toggle.setAttribute('aria-label', 'More');
-        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
-
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'gh-dropdown');
-
-        if (submenuItems.length >= 10) {
-            document.body.classList.add('is-dropdown-mega');
-            wrapper.style.gridTemplateRows = 'repeat(' + Math.ceil(submenuItems.length / 2) + ', 1fr)';
-        } else {
-            document.body.classList.remove('is-dropdown-mega');
-        }
-
-        submenuItems.forEach(function (child) {
-            wrapper.appendChild(child);
-        });
-
-        toggle.appendChild(wrapper);
-        nav.appendChild(toggle);
 
         document.body.classList.add('is-dropdown-loaded');
-
-        toggle.addEventListener('click', function () {
-            document.body.classList.toggle('is-dropdown-open');
-        });
-
-        windowClickListener = function (e) {
-            if (!toggle.contains(e.target) && document.body.classList.contains('is-dropdown-open')) {
-                document.body.classList.remove('is-dropdown-open');
-            }
-        };
-        window.addEventListener('click', windowClickListener);
     }
 
-    imagesLoaded(head, function () {
-        makeDropdown();
+    function scheduleDropdown() {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(makeDropdown);
+    }
+
+    window.addEventListener('click', function (event) {
+        if (toggle && !toggle.parentElement.contains(event.target)) closeDropdown();
+    });
+    window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeDropdown();
     });
 
-    window.addEventListener('resize', function () {
-        setTimeout(function () {
-            window.removeEventListener('click', windowClickListener);
-            nav.innerHTML = navHTML;
-            makeDropdown();
-        }, 1);
-    });
+    const observer = new ResizeObserver(scheduleDropdown);
+    observer.observe(head);
+    observer.observe(menu);
+    imagesLoaded(head, scheduleDropdown);
+    if (document.fonts) document.fonts.ready.then(scheduleDropdown);
+    scheduleDropdown();
 })();
