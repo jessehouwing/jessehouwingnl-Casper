@@ -24,8 +24,8 @@ dependencies:
         commit: 'sha1-aebdcf6156ab6691adf63218240e476564a1ed4c'
         owner_id: 88700172
         repo_id: 422287306
-    'tryghost/action-deploy-theme@v2.0.3':
-        ref: 'v2.0.3'
-        commit: 'sha1-fabdc560bd55f2e9316e7cb3d726d77418fdcfa5'
+    'tryghost/action-deploy-theme@v2.0.4':
+        ref: 'v2.0.4'
+        commit: 'sha1-b1ff2a5eeac1d5438a0aab35eb996fe4010d889e'
         owner_id: 2178663
         repo_id: 214454509
