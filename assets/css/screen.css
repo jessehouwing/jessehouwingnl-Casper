@@ -1194,6 +1194,7 @@ html.dark-mode .related-posts {
 }
 
 .project-card.training-card .post-card-image {
+    padding: 16px;
     background: var(--project-card-background);
     object-fit: contain;
 }
