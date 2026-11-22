@@ -1071,6 +1071,22 @@ html.dark-mode .project-card {
     font-weight: 600;
 }
 
+.repository-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.repository-link svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+}
+
+.project-repository a.repository-link {
+    color: inherit;
+}
+
 .training-course .project-repository a {
     color: inherit;
 }
@@ -1124,12 +1140,10 @@ html.dark-mode .project-card {
     border-top: 1px solid #8a939b;
 }
 
-.related-posts ~ .related-training {
-    border-top: 0;
-}
-
+.related-posts ~ .related-projects,
+.related-posts ~ .related-training,
 .related-projects:has(.project-card) ~ .related-training {
-    border-top: 1px solid #8a939b;
+    border-top: 0;
 }
 
 .read-more-wrap.related-posts {

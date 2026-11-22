@@ -11,7 +11,7 @@
             {{/primary_tag}}
             <h1 class="article-title">{{title}}</h1>
             {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
-            <p class="project-repository"><a href="{{@site.url}}/projects/{{slug}}/repo/">View repository</a></p>
+            <p class="project-repository"><a class="repository-link" href="{{@site.url}}/projects/{{slug}}/repo/">{{> "icons/github"}} View repository</a></p>
 
             {{#if feature_image}}
             <figure class="article-image">

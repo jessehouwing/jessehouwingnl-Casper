@@ -14,12 +14,12 @@
     {{/if}}
 
     <div class="project-card-content">
-        <div class="project-card-tags">{{tags visibility="public" separator=" "}}</div>
         <h2 class="post-card-title"><a href="{{#if custom_template}}{{url}}{{else}}{{@site.url}}/projects/{{slug}}/repo/{{/if}}">{{title}}</a></h2>
+        <div class="project-card-tags">{{tags visibility="public" separator=" "}}</div>
         {{#if excerpt}}<div class="post-card-excerpt">{{excerpt}}</div>{{/if}}
         <div class="project-card-links">
             {{#if custom_template}}<a href="{{url}}">View project</a>{{/if}}
-            <a href="{{@site.url}}/projects/{{slug}}/repo/">View repository</a>
+            <a class="repository-link" href="{{@site.url}}/projects/{{slug}}/repo/">{{> "icons/github"}} View repository</a>
         </div>
     </div>
 </article>
