@@ -2427,7 +2427,7 @@ html.dark-mode .gh-button-share:hover {
 }
 
 .author-profile-website {
-    flex: 0 0 auto;
+    flex: 0 0 100%;
     max-width: 100%;
     overflow-wrap: anywhere;
 }
