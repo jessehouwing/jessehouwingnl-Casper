@@ -2421,7 +2421,15 @@ html.dark-mode .gh-button-share:hover {
 
 .author-profile-meta {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 12px;
+}
+
+.author-profile-website {
+    flex: 0 0 auto;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 .author-profile-social-link {
