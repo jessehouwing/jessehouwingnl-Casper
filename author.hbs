@@ -50,9 +50,11 @@
                 {{/if}}
                 <div class="author-profile-meta">
                     {{#if website}}
-                        <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener me">{{website}}</a>
+                        <a class="author-profile-social-link author-profile-website" href="{{website}}" target="_blank" rel="noopener me">{{website}}</a>
                     {{/if}}
-                    {{> "social-links" source=this link_class="author-profile-social-link"}}
+                    {{#match slug "!=" "jesse-houwing"}}
+                        {{> "social-links" source=this link_class="author-profile-social-link"}}
+                    {{/match}}
                     {{{block "links"}}}
                 </div>
             </footer>
