@@ -33,6 +33,7 @@ jobs:
       - run: corepack enable
       - run: |
           yarn install
+          yarn test:ci
           yarn zip
       - uses: tryghost/action-deploy-theme@v2.0.4
         with:
