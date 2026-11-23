@@ -108,9 +108,17 @@ yarn install
 
 # run development server
 yarn dev
+
+# run template and behavior tests and check Ghost compatibility
+yarn test:ci
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+
+Pull requests and pushes to `customized` run `yarn test:ci`; deployment also runs
+it before packaging. The render smoke tests use representative fixture data and
+modeled Ghost helpers, so they cannot replace verification against a real Ghost
+installation.
 
 The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
 

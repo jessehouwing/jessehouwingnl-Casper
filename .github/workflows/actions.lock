@@ -8,6 +8,10 @@ workflows:
         - 'actions/setup-node@v7.1.0'
         - 'step-security/harden-runner@v2.23.0'
         - 'tryghost/action-deploy-theme@v2.0.4'
+    '.github/workflows/validate-theme.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/setup-node@v7.1.0'
+        - 'step-security/harden-runner@v2.23.0'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
