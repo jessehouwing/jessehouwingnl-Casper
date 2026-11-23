@@ -47,9 +47,8 @@ function renderArchive({page = 1, posts = entries, fail = false, tag = false} = 
         return count === 0 ? options.hash.empty : count === 1 ? options.hash.singular : `A collection of ${count} posts`;
     });
     hbs.registerHelper('match', function (left, operator, right, options) {
-        assert.ok(operator === '>' || operator === '!=');
-        const matches = operator === '>' ? left > right : left !== right;
-        return matches ? options.fn(this) : options.inverse(this);
+        assert.equal(operator, '>');
+        return left > right ? options.fn(this) : options.inverse(this);
     });
     hbs.registerHelper('foreach', function (items, options) {
         return items.length ? items.map((item) => options.fn(item)).join('') : options.inverse(this);
