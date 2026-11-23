@@ -7,6 +7,7 @@ const Handlebars = require("handlebars");
 const root = path.join(__dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const h = Handlebars.create();
+h.registerHelper("link_class", () => { throw new Error('The link_class helper requires a for attribute'); });
 for (const name of ["jesse-social-links", "social-links"]) {
     h.registerPartial(name, read(`partials/${name}.hbs`));
 }
@@ -53,10 +54,10 @@ test("Jesse's author links match the header without duplicated author accounts",
     h.registerHelper("block", () => new h.SafeString(authorLinks));
     const author = {slug: "jesse-houwing", website: "https://example.test/", accounts: site.accounts};
     const html = h.compile(read("author.hbs"))({author, pagination: {page: 1}}, {data});
-    const header = h.compile('{{> "jesse-social-links" link_class="gh-social-link"}}')({}, {data});
+    const header = h.compile('{{> "jesse-social-links" social_link_class="gh-social-link"}}')({}, {data});
     assert.deepEqual(links(html), links(header));
     assert.equal(links(html).length, 14);
-    assert.match(read("default.hbs"), /{{> "jesse-social-links" link_class="gh-social-link"}}/);
+    assert.match(read("default.hbs"), /{{> "jesse-social-links" social_link_class="gh-social-link"}}/);
     assert.match(html, /class="author-profile-social-link author-profile-website"/);
 });
 
